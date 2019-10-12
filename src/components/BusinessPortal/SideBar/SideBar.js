@@ -5,9 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
+import HomeIcon from '@material-ui/icons/Home'; import PeopleIcon from '@material-ui/icons/People';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
 // render sidebar main top items
@@ -15,7 +13,7 @@ export const mainListItems = (
     <div>
         <ListItem button>
             <ListItemIcon>
-                <ShoppingCartIcon />
+                <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="All" />
         </ListItem>
@@ -36,21 +34,21 @@ export const secondaryListItems = (
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Create" />
+            <ListItemText primary="placeholder" />
         </ListItem>
 
         <ListItem button>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Update" />
+            <ListItemText primary="placeholder" />
         </ListItem>
 
         <ListItem button>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Delete" />
+            <ListItemText primary="placeholder" />
         </ListItem>
     </div>
 );

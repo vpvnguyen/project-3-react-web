@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Splash from '../Splash/SignIn/SignIn.jsx';
+import Splash from '../Splash/Splash.jsx';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Dashboard from '../BusinessPortal/Dashboard/Dashboard.js';

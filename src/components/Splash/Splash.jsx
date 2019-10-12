@@ -4,14 +4,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 // material-ui
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import LocalBarIcon from '@material-ui/icons/LocalBar';
-import Footer from '../../Footer/Footer';
+import Footer from '../Footer/Footer';
+
+// components
+import BusinessSignIn from './BusinessSignIn/BusinessSignIn.jsx';
+import MobileApp from './MobileApp/MobileApp.jsx';
 
 // styling; export to css
 const useStyles = makeStyles(theme => ({
@@ -43,6 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+
 // render sign in page
 export default function SignIn() {
     const classes = useStyles();
@@ -60,23 +64,8 @@ export default function SignIn() {
                         Dat Beer App
                     </Typography>
 
-                    <Button className="btnMargin"
-                        type="submit"
-                        fullWidth
-                        variant="outlined"
-                        color="secondary"
-                        className={classes.submit}
-                    >
-                        Login
-                        </Button>
-                    <Button className={classes.button}
-                        type="submit"
-                        fullWidth
-                        variant="outline"
-                        color="inherit"
-                    >
-                        Get App for iOS and Android!
-                        </Button>
+                    <BusinessSignIn />
+                    <MobileApp />
 
                     <Box mt={5}>
                         <Footer />
