@@ -104,15 +104,25 @@ const useStyles = makeStyles(theme => ({
 
 
 // render dashboard
-export default function Dashboard() {
+export default function Dashboard(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
+
+    //Capitalizes first letter of names
+    const capitalize = (string) => {
+        let split = string.split(' '); 
+        console.log(split)
+        let capitalized = []; 
+        split.forEach((item, index) => {
+            capitalized.push(item.replace(/^./, item[0].toUpperCase())) 
+        })
+        return capitalized.join(' '); 
+      }; 
 
     const handleDrawerClose = () => {
         setOpen(false);
     };
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -124,6 +134,8 @@ export default function Dashboard() {
                 open={open}
             >
                 <div className={classes.toolbarIcon}>
+                    {/* dynamically get users name  */}
+                    <p>Welcome {capitalize(props.user.name)}</p>
                     <IconButton onClick={handleDrawerClose}>
                         <ChevronLeftIcon />
                     </IconButton>

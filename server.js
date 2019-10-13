@@ -6,9 +6,11 @@ const passport = require('passport');
 const keys = require('./config/env_config'); 
 const apiRoutes = require('./routes/api-routes');
 const authRoutes = require('./routes/auth-routes'); 
+const cors = require('cors')
 
 //node server port 
-const PORT = process.env.PORT || 3000;  
+const PORT = process.env.PORT || 5000;  
+
 
 //express middleware 
 app.use(express.urlencoded({
@@ -28,6 +30,17 @@ app.use(passport.session());
 
 //use development files 
 app.use(express.static('development'))
+
+//setting cors headers to allow react app to hit REST API 
+app.use(
+    cors({
+      origin: "http://localhost:3000", // allow to server to accept request from different origin
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      credentials: true // allow session cookie from browser to pass through
+    })
+  );
+
+//going to need to add an authcheck here
 
 //auth routes
 app.use('/auth', authRoutes); 

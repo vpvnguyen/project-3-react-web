@@ -33,8 +33,9 @@ passport.use(
         clientSecret: keys.clientSecret
     }, (accessToken, refreshToken, profile, done) => {
         //strategy callback 
+        console.log(profile)
         //lodash to pick data we need from profile object 
-        let data = __.pick(profile, 'displayName', 'id', 'name', 'email'); 
+        let data = __.pick(profile, 'displayName', 'id', 'name', 'email', 'photos'); 
         //returning a promise 
         return new Promise((resolve, reject) => {
             //select where id = id to verify this is a new user before creating a new user in the db
@@ -46,7 +47,8 @@ passport.use(
                             knex('businessusers').insert({
                                     name: data.displayName,
                                     google_id: data.id,
-                                    email: data.email
+                                    email: data.email, 
+                                    image: data.photos[0].value
                                 }) 
                                 .then((resp) => {
                                     //then resolve promise 

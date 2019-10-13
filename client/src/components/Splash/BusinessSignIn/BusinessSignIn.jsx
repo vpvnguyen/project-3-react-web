@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios'; 
 
 // material-ui
 import Button from '@material-ui/core/Button';
@@ -15,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 const handleClicks = () => {
     console.log('login');
     // route to auth
-    // direct to business portal dashboard
+    window.open("http://localhost:5000/auth/google", "_self");
 };
 
 // render components
