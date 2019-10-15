@@ -24,11 +24,6 @@ router.get('/logout', (req, res) => {
     res.redirect(CLIENT_HOME_PAGE_URL); 
 }); 
 
-//route to get second auth redirect and take to profile page
-router.get('/profile', (req, res) => {
-    res.send(express.static('/development/profile.html')); 
-});  
-
 //failre redirect 
 router.get('/login/failed', (req, res) => {
     res.status(401).json({

@@ -42,16 +42,30 @@ app.use(
 
 //going to need to add an authcheck here
 
+ 
+
+
+// / Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+// Define API routes here
 //auth routes
 app.use('/auth', authRoutes); 
 
 //api routes
-app.use('/api', apiRoutes); 
+app.use('/api', apiRoutes);
 
-//displays dummy html for development only
-app.get('/', (req, res) => {
-    res.send(express.static('/index.html'))
-}); 
+// Send every other request to the React app
+// Define any API routes before this runs
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
+// //displays dummy html for development only
+// app.get('/', (req, res) => {
+//     res.send(express.static('/index.html'))
+// }); 
 
 //making app listen on Port
 app.listen(PORT, (err) => {
