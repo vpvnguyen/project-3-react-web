@@ -68,12 +68,15 @@ class Main extends Component {
     render() {
         const { authenticated } = this.state;
         return (
+            // <div className="container">
+            //     <ThemeProvider theme={theme} >
+            //         {/* if authenticated render business dashbard if not render splash page */}
+            //         {!authenticated ?  <Splash /> : <Dashboard user={this.state.user[0]}/>}
+            //     </ThemeProvider>
+            // </div>
             <div className="container">
-                <ThemeProvider theme={theme} >
-                    {/* if authenticated render business dashbard if not render splash page */}
-                    {!authenticated ?  <Splash /> : <Dashboard user={this.state.user[0]}/>}
-                </ThemeProvider>
-            </div>
+              <Dashboard />
+              </div>
         )
     }
 }

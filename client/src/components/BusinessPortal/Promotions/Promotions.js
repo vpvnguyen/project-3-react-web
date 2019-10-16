@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 // material-ui
 import Link from '@material-ui/core/Link';
@@ -13,12 +13,12 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleOutlinedIcon from '@material-ui/icons/AddCircleOutlined';
-
 import teal from '@material-ui/core/colors/teal';
 
 
 import { createMuiTheme } from '@material-ui/core/styles';
 
+import PromotionForm from '../PromotionForm/PromotionForm'
 
 // components
 import Title from '../Title/Title';
@@ -79,6 +79,8 @@ const deletePromotion = () => {
 // render promotions
 export default function Promotions() {
     const classes = useStyles();
+    const [formActive, setActive] = useState(false);
+
     return (
         <React.Fragment>
 
@@ -113,7 +115,9 @@ export default function Promotions() {
 
             </Table>
             <div className={classes.promoBottom}>
-                <Fab size="small" variant="extended" aria-label="delete" className={classes.fab} onClick={addPromotion}>
+                <Fab size="small" variant="extended" aria-label="delete" className={classes.fab}       onClick={() => {
+            formActive ? setActive(false) : setActive(true);
+          }}>
                     <AddIcon className={classes.extendedIcon} />
                     Add Promotion
                 </Fab>
@@ -121,6 +125,8 @@ export default function Promotions() {
                     <DeleteIcon className={classes.extendedIcon} />
                     Delete Promotion
                 </Fab>
+                {formActive ? <PromotionForm formContents= {addPromotion}/> : <span></span>}
+
             </div>
         </React.Fragment>
 

@@ -135,10 +135,9 @@ export default function Dashboard(props) {
             >
                 <div className={classes.toolbarIcon}>
                     {/* dynamically get users name  */}
-                    <p>Welcome {capitalize(props.user.name)}</p>
-                    <IconButton onClick={handleDrawerClose}>
+                     {/* <IconButton onClick={handleDrawerClose}> */}
                         <ChevronLeftIcon />
-                    </IconButton>
+                    {/* </IconButton> */}
                 </div>
                 <Divider />
                 <List>{mainListItems}</List>
