@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 // material-ui
-import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,11 +8,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Fab from '@material-ui/core/Fab';
-import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
-import AddCircleOutlinedIcon from '@material-ui/icons/AddCircleOutlined';
-import teal from '@material-ui/core/colors/teal';
+
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -107,7 +105,7 @@ export default function Promotions() {
                             <TableCell>{row.name}</TableCell>
                             <TableCell>{row.qtypeople}</TableCell>
                             <TableCell>{row.description}</TableCell>
-                            {/* <TableCell align="right">{row.amount}</TableCell> */}
+                            <TableCell align="right"><DeleteForeverIcon  id={"delete_" + row.id}/></TableCell>
                         </TableRow>
                     ))}
 
@@ -120,10 +118,6 @@ export default function Promotions() {
           }}>
                     <AddIcon className={classes.extendedIcon} />
                     Add Promotion
-                </Fab>
-                <Fab size="small" variant="extended" aria-label="delete" className={classes.fab} onClick={deletePromotion}>
-                    <DeleteIcon className={classes.extendedIcon} />
-                    Delete Promotion
                 </Fab>
                 {formActive ? <PromotionForm formContents= {addPromotion}/> : <span></span>}
 
