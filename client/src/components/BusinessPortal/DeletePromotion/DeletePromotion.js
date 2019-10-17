@@ -9,6 +9,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles } from "@material-ui/core/styles";
+import Zoom from '@material-ui/core/Zoom'
 
 // styling
 const useStyles = makeStyles(theme => ({
@@ -32,7 +33,7 @@ export default function DeletePromotion(props) {
 
   return (
     <>
-      <Tooltip title="Delete" placement="left">
+      <Tooltip title="Delete" placement="left" TransitionComponent={Zoom}>
         <IconButton aria-label="delete" onClick={handleClickOpen}>
           <DeleteForeverIcon />
         </IconButton>
