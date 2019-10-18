@@ -32,6 +32,9 @@ router.post('/addBusiness', (req, res) => {
     // Business.addBusiness(req.pendingBusiness)
 })
 
+router.get('/allCities', (req, res) => {
+    Business.getAllCities(res); 
+}); 
 
 // Promotion Routes
 
