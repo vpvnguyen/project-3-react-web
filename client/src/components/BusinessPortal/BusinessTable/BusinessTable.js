@@ -2,41 +2,32 @@ import React from "react";
 import MaterialTable from "material-table";
 
 /**
- * Ths function will create an axios HTTP request to 
- * obtain all the promotions from a given business that 
+ * Ths function will create an axios HTTP request to
+ * obtain all the promotions from a given business that
  * is passed as an argument
  */
-const getAllThePromotionsFromABusiness = (businessName) => {
-
-}
+const getAllThePromotionsFromABusiness = businessName => {};
 
 /**
- * this function will update a current promotion that is 
+ * this function will update a current promotion that is
  * available from a business
  */
-const updatePromottion = (promo) => {
-    
-}
+const updatePromottion = promo => {};
 
 /**
  * this function will delete a current promotion that is
  * available from a business
  */
-const deletePromotion = () => {
-
-}
+const deletePromotion = () => {};
 
 /**
- * this function will add a new promotion to the database of the 
+ * this function will add a new promotion to the database of the
  * given business
  */
-const addNewPromotion = () => {
-    
-}
-
-
+const addNewPromotion = () => {};
 
 export default function MaterialTableDemo() {
+
   const [state, setState] = React.useState({
     columns: [
       { title: "Name", field: "name" },
