@@ -21,6 +21,7 @@ class Main extends Component {
           name: PropTypes.string,
           image: PropTypes.string,
           google_id: PropTypes.string,
+          user_type: PropTypes.string,
           id: PropTypes.number
         })
       };
@@ -73,7 +74,11 @@ class Main extends Component {
             <div className="container">
                 <ThemeProvider theme={theme} >
                     {/* if authenticated render business dashbard if not render splash page */}
-                    <Splash user={this.state.user} authenticated={this.state.authenticated}/>
+                    {this.state.authenticated && this.state.user[0].user_type === 'businessuser' ? (
+                      <Dashboard user={this.state.user}/>
+                    ) : (
+                      <Splash user={this.state.user} authenticated={this.state.authenticated}/>
+                    )}
                 </ThemeProvider>
             </div>
             // <div className="container">
