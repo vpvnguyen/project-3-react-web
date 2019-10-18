@@ -94,43 +94,6 @@ const styles = {
                     />
                 </Grid>
 
-                {/* Business Type  */}
-                {/* <Grid item md={12} xs={6} >
-                    <FormControl  component="fieldset">
-                        <FormLabel component="legend">Type of Business: </FormLabel>
-                            <RadioGroup fullWidth aria-label="position" name="businessType" value={this.state.restarauntType} onChange={this.handleRadioChange} row>
-                                <FormControlLabel
-                                    value="Bar"
-                                    control={<Radio color="primary" />}
-                                    label="Bar"
-                                    labelPlacement="start"
-                                    style={{ color: 'grey' }}
-                                />
-                                <FormControlLabel
-                                    value="Hotel"
-                                    control={<Radio color="primary" />}
-                                    label="Hotel"
-                                    labelPlacement="start"
-                                    style={{ color: 'grey' }}
-                                />
-                                <FormControlLabel
-                                    value="Brewery"
-                                    control={<Radio color="primary" />}
-                                    label="Brewery"
-                                    labelPlacement="start"
-                                    style={{ color: 'grey' }}
-                                />
-                                <FormControlLabel
-                                    value="Restaraunt"
-                                    control={<Radio color="primary" />}
-                                    label="Restaraunt"
-                                    labelPlacement="start"
-                                    style={{ color: 'grey' }}
-                                />
-                        </RadioGroup>
-                    </FormControl>
-                </Grid> */}
-
                 {/* Sellers permit  */}
                 <Grid item  md={6} xs={12} >
                     <TextField

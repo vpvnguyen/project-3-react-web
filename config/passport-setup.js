@@ -14,7 +14,7 @@ passport.serializeUser((user, done) => {
 
 //passport deserialize user function 
 passport.deserializeUser((id, done) => {
-    knex('businessusers')
+    knex('users')
         .where('id', id)
         .select()
         .then((resp) => {
@@ -35,19 +35,18 @@ passport.use(
         //strategy callback 
         console.log(profile)
         //lodash to pick data we need from profile object 
-        let data = __.pick(profile, 'displayName', 'id', 'name', 'email', 'photos'); 
+        let data = __.pick(profile, 'displayName', 'id', 'name', 'photos'); 
         //returning a promise 
         return new Promise((resolve, reject) => {
             //select where id = id to verify this is a new user before creating a new user in the db
-                knex('businessusers').select()
+                knex('users').select()
                     .where('google_id', data.id)
                     .then((rows) => {
                         if (rows.length === 0) {
                             //if user doesn't exist make new user
-                            knex('businessusers').insert({
+                            knex('users').insert({
                                     name: data.displayName,
                                     google_id: data.id,
-                                    email: data.email, 
                                     image: data.photos[0].value
                                 }) 
                                 .then((resp) => {
@@ -61,7 +60,7 @@ passport.use(
                     })
             }).then(() => {
                 //return the user signing in and send it to the serialize function to make them a cookie and show that they are signed in 
-                return knex('businessusers').where('google_id', data.id).select(); 
+                return knex('users').where('google_id', data.id).select(); 
             }).then((user_id) => {
                 done(null, user_id[0]); 
             })

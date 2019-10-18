@@ -88,7 +88,7 @@ class Splash extends Component {
                         <Typography component="h1" variant="h5">
                             Dat Beer App
                         </Typography>
-                            <BusinessSignIn handleClaimClick={this.claimBusinessClick} authenticated={this.props.authenticated}/> 
+                            <BusinessSignIn user={this.props.user} handleClaimClick={this.claimBusinessClick} authenticated={this.props.authenticated}/> 
                             {showForm ? <AddBusiness user={this.props.user} closeForm={this.closeForm} /> : <div></div>}
                             <p>or</p>
                             <MobileApp /> 
