@@ -17,6 +17,9 @@ import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
+
 
 //styles object 
 const styles = {
@@ -35,9 +38,19 @@ const styles = {
         margin: '2%', 
     }
   };
+
+  const useStyles = makeStyles(theme => ({
+    activeButton: {
+        backgroundColor: '#aeb8b1'
+    },
+    disabledButton:{
+        backgroundColor: "#c4ccc6"
+    }
+}));
   
     //form component 
     const AddBusinessForm = props => {
+        const classes = useStyles();
         //deconstructing props to use in form 
         const {
             values: { businessName, ownerName, sellersPermit, abcNumber, businessEmail, businessPhone, businessAddr1, businessCity, businessState, businessZip },
@@ -71,6 +84,7 @@ const styles = {
                     <TextField
                         id="business-Name"
                         name="businessName"
+                        required={true}
                         error={touched.businessName && Boolean(errors.businessName)}
                         label="Business Name"
                         value={businessName}
@@ -85,6 +99,7 @@ const styles = {
                         id="owner-Name"
                         name="ownerName"
                         label="Owner"
+                        required={true}
                         id="name"
                         helperText={touched.ownerName ? errors.ownerName : ""}
                         error={touched.ownerName && Boolean(errors.ownerName)}
@@ -100,6 +115,7 @@ const styles = {
                         id="sellers-permit"
                         name="sellersPermit"
                         label="Sellers Permit"
+                        required={true}
                         helperText={touched.sellersPermit ? errors.sellersPermit : ""}
                         error={touched.sellersPermit && Boolean(errors.sellersPermit)}
                         value={sellersPermit}
@@ -114,6 +130,7 @@ const styles = {
                         id="abc-number"
                         name="abcNumber"
                         label="ABC Number"
+                        required={true}
                         helperText={touched.abcNumber ? errors.abcNumber : ""}
                         error={touched.abcNumber && Boolean(errors.abcNumber)}
                         value={abcNumber}
@@ -128,10 +145,11 @@ const styles = {
                         id="business-email"
                         name="businessEmail"
                         label="Email"
-                        helperText={touched.email ? errors.email : ""}
-                        error={touched.email && Boolean(errors.email)}
+                        required={true}
+                        helperText={touched.businessEmail ? errors.businessEmail : ""}
+                        error={touched.businessEmail && Boolean(errors.businessEmail)}
                         value={businessEmail}
-                        onChange={change.bind(null, "email")}
+                        onChange={change.bind(null, "businessEmail")}
                         fullWidth
                     />
                 </Grid>
@@ -141,7 +159,9 @@ const styles = {
                     <TextField
                         id="business-phone"
                         name="businessPhone"
+                        type='number'
                         label="Phone"
+                        required={true}
                         helperText={touched.businessPhone ? errors.businessPhone : ""}
                         error={touched.businessPhone && Boolean(errors.businessPhone)}
                         value={businessPhone}
@@ -156,6 +176,7 @@ const styles = {
                         id="business-addr1"
                         name="businessAddr1"
                         label="Address"
+                        required={true}
                         helperText={touched.businessAddr1 ? errors.businessAddr1 : ""}
                         error={touched.businessAddr1 && Boolean(errors.businessAddr1)}
                         value={businessAddr1}
@@ -169,6 +190,7 @@ const styles = {
                         id="business-city"
                         name="businessCity"
                         label="City"
+                        required={true}
                         helperText={touched.businessCity ? errors.businessCity : ""}
                         error={touched.businessCity && Boolean(errors.businessCity)}
                         value={businessCity}
@@ -182,6 +204,7 @@ const styles = {
                         id="business-state"
                         name="businessState"
                         label="State"
+                        required={true}
                         helperText={touched.businessState ? errors.businessState : ""}
                         error={touched.businessState && Boolean(errors.businessState)}
                         value={businessState}
@@ -195,6 +218,8 @@ const styles = {
                         id="business-zip"
                         name="businessZip"
                         label="Zip Code"
+                        type='number'
+                        required={true}
                         helperText={touched.businessZip ? errors.businessZip : ""}
                         error={touched.businessZip && Boolean(errors.businessZip)}
                         value={businessZip}
@@ -202,12 +227,13 @@ const styles = {
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={12} >
+                <Grid item xs={12} alignItems='center' justify="center" direction="row" container>
                 <Button 
                     disabled={!isValid} 
                     id="submit-button" 
                     type="submit"
-                    style={{ background: 'grey', color: 'white', padding: '5px' }} >
+                    display='flex'
+                    className={!isValid ? classes.disabledButton : classes.activeButton} >
                         Submit
                 </Button>
                 </Grid>
