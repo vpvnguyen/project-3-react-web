@@ -81,10 +81,6 @@ class Main extends Component {
                     )}
                 </ThemeProvider>
             </div>
-            // <div className="container">
-            //   {/* <Dashboard /> */}
-            //   <AddBusinessPage />
-            //   </div>
         )
     }
 }

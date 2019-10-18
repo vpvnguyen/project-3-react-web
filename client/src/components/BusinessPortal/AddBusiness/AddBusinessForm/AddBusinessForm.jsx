@@ -146,10 +146,10 @@ const styles = {
                         name="businessEmail"
                         label="Email"
                         required={true}
-                        helperText={touched.email ? errors.email : ""}
-                        error={touched.email && Boolean(errors.email)}
+                        helperText={touched.businessEmail ? errors.businessEmail : ""}
+                        error={touched.businessEmail && Boolean(errors.businessEmail)}
                         value={businessEmail}
-                        onChange={change.bind(null, "email")}
+                        onChange={change.bind(null, "businessEmail")}
                         fullWidth
                     />
                 </Grid>
@@ -159,6 +159,7 @@ const styles = {
                     <TextField
                         id="business-phone"
                         name="businessPhone"
+                        type='number'
                         label="Phone"
                         required={true}
                         helperText={touched.businessPhone ? errors.businessPhone : ""}
@@ -217,6 +218,7 @@ const styles = {
                         id="business-zip"
                         name="businessZip"
                         label="Zip Code"
+                        type='number'
                         required={true}
                         helperText={touched.businessZip ? errors.businessZip : ""}
                         error={touched.businessZip && Boolean(errors.businessZip)}
@@ -225,11 +227,12 @@ const styles = {
                         fullWidth
                     />
                 </Grid>
-                <Grid item xs={12} >
+                <Grid item xs={12} alignItems='center' justify="center" direction="row" container>
                 <Button 
                     disabled={!isValid} 
                     id="submit-button" 
                     type="submit"
+                    display='flex'
                     className={!isValid ? classes.disabledButton : classes.activeButton} >
                         Submit
                 </Button>
