@@ -3,10 +3,10 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      host : 'ec2-54-221-215-228.compute-1.amazonaws.com',
-      user : 'mxqchuznyjooit',
-      password : '7d9afdd8b8ca128b0663917f48b8e97045589cad5d377f110f6c723eec405eb2',
-      database : 'df43ba9t22510r',
+      host : 'ec2-174-129-210-249.compute-1.amazonaws.com',
+      user : 'tnphmmzrfobexl',
+      password : 'b85f3f0396037f7be2fe6eb8fae516bc40141b94141c60c329f3e9d20d379217',
+      database : 'd1i9odaam8du7m',
       charset: 'utf8', 
       ssl: true
     },
@@ -20,10 +20,10 @@ module.exports = {
   staging: {
     client: 'pg',
     connection: {
-      host : 'ec2-54-221-215-228.compute-1.amazonaws.com',
-      user : 'mxqchuznyjooit',
-      password : '7d9afdd8b8ca128b0663917f48b8e97045589cad5d377f110f6c723eec405eb2',
-      database : 'df43ba9t22510r',
+      host : 'ec2-174-129-210-249.compute-1.amazonaws.com',
+      user : 'tnphmmzrfobexl',
+      password : 'b85f3f0396037f7be2fe6eb8fae516bc40141b94141c60c329f3e9d20d379217',
+      database : 'd1i9odaam8du7m',
       charset: 'utf8', 
       ssl: true
     },
@@ -38,10 +38,10 @@ module.exports = {
   production:{
     client: 'pg',
     connection: {
-      host : 'ec2-54-221-215-228.compute-1.amazonaws.com',
-      user : 'mxqchuznyjooit',
-      password : '7d9afdd8b8ca128b0663917f48b8e97045589cad5d377f110f6c723eec405eb2',
-      database : 'df43ba9t22510r',
+      host : 'ec2-174-129-210-249.compute-1.amazonaws.com',
+      user : 'tnphmmzrfobexl',
+      password : 'b85f3f0396037f7be2fe6eb8fae516bc40141b94141c60c329f3e9d20d379217',
+      database : 'd1i9odaam8du7m',
       charset: 'utf8', 
       ssl: true
     },

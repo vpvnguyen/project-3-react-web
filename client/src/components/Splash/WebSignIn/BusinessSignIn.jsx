@@ -84,5 +84,18 @@ export default function BusinessSignIn(props) {
                 Claim a business
             </Button>
         )
-    }
+    } else {
+        return (
+            <Button
+                type="submit"
+                fullWidth
+                variant="outlined"
+                color="secondary"
+                className={classes.btnSpacing}
+                onClick={handleLogInClicks}
+            >
+                Login in with Google
+            </Button>
+        )
+    }; 
 }
