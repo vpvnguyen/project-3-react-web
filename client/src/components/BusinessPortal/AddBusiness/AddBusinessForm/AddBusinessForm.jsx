@@ -23,25 +23,18 @@ import { red } from '@material-ui/core/colors';
 
 //styles object 
 const styles = {
-    container: {
-      border: 0,
-      borderRadius: 3,
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      color: 'white',
-      height: '80vh',
-      width: '50vw',
-    //   padding: '0 30px',
-      marginTop: '10vh', 
-      overflow: 'auto'
-    },
-    formPadding: {
-        margin: '2%', 
+    outlined: {
+        backgroundColor: 'red',
+        color: 'red'
     }
   };
 
   const useStyles = makeStyles(theme => ({
     activeButton: {
-        backgroundColor: '#aeb8b1'
+        backgroundColor: '#aeb8b1',
+        outlined: {
+            backgroundColor:'red'
+        }
     },
     disabledButton:{
         backgroundColor: "#c4ccc6"
@@ -229,6 +222,7 @@ const styles = {
                 </Grid>
                 <Grid item xs={12} alignItems='center' justify="center" direction="row" container>
                 <Button 
+                fullWidth={true}
                     disabled={!isValid} 
                     id="submit-button" 
                     type="submit"
