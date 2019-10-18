@@ -15,7 +15,7 @@ export default function MobileApp() {
             color="inherit"
             onClick={handleClicks}
         >
-            Get App for iOS and Android!
+            Get the App for iOS and Android!
         </Button>
     )
 }

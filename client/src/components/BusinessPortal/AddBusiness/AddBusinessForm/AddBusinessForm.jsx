@@ -1,0 +1,258 @@
+import React, { Component } from 'react'; 
+
+//form style imports 
+import { FormControl, InputLabel, FormHelperText, Input } from '@material-ui/core';
+//page style imports 
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+//making styles import 
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+//styles object 
+const styles = {
+    container: {
+      border: 0,
+      borderRadius: 3,
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      color: 'white',
+      height: '80vh',
+      width: '50vw',
+    //   padding: '0 30px',
+      marginTop: '10vh', 
+      overflow: 'auto'
+    },
+    formPadding: {
+        margin: '2%', 
+    }
+  };
+  
+    //form component 
+    const AddBusinessForm = props => {
+        //deconstructing props to use in form 
+        const {
+            values: { businessName, ownerName, sellersPermit, abcNumber, businessEmail, businessPhone, businessAddr1, businessCity, businessState, businessZip },
+            errors,
+            touched,
+            handleChange,
+            isValid,
+            setFieldTouched, 
+            handleSubmit
+          } = props;
+         
+          //handles input change to set values to match input 
+          const change = (name, e) => {
+            e.persist();
+            handleChange(e);
+            setFieldTouched(name, true, false);
+          };
+          
+   
+        return (
+        
+        <Container >
+            <form
+            onSubmit={handleSubmit}
+        >
+        <CssBaseline /> 
+        <Grid container spacing={2} >
+            
+                {/* Business name */}
+                <Grid item md={6} xs={12} >
+                    <TextField
+                        id="business-Name"
+                        name="businessName"
+                        error={touched.businessName && Boolean(errors.businessName)}
+                        label="Business Name"
+                        value={businessName}
+                        onChange={change.bind(null, "businessName")}
+                        fullWidth
+                    />
+                </Grid>
+
+                {/* Owner Name  */}
+                <Grid item md={6} xs={12} >
+                <TextField
+                        id="owner-Name"
+                        name="ownerName"
+                        label="Owner"
+                        id="name"
+                        helperText={touched.ownerName ? errors.ownerName : ""}
+                        error={touched.ownerName && Boolean(errors.ownerName)}
+                        value={ownerName}
+                        onChange={change.bind(null, "ownerName")}
+                        fullWidth
+                    />
+                </Grid>
+
+                {/* Business Type  */}
+                {/* <Grid item md={12} xs={6} >
+                    <FormControl  component="fieldset">
+                        <FormLabel component="legend">Type of Business: </FormLabel>
+                            <RadioGroup fullWidth aria-label="position" name="businessType" value={this.state.restarauntType} onChange={this.handleRadioChange} row>
+                                <FormControlLabel
+                                    value="Bar"
+                                    control={<Radio color="primary" />}
+                                    label="Bar"
+                                    labelPlacement="start"
+                                    style={{ color: 'grey' }}
+                                />
+                                <FormControlLabel
+                                    value="Hotel"
+                                    control={<Radio color="primary" />}
+                                    label="Hotel"
+                                    labelPlacement="start"
+                                    style={{ color: 'grey' }}
+                                />
+                                <FormControlLabel
+                                    value="Brewery"
+                                    control={<Radio color="primary" />}
+                                    label="Brewery"
+                                    labelPlacement="start"
+                                    style={{ color: 'grey' }}
+                                />
+                                <FormControlLabel
+                                    value="Restaraunt"
+                                    control={<Radio color="primary" />}
+                                    label="Restaraunt"
+                                    labelPlacement="start"
+                                    style={{ color: 'grey' }}
+                                />
+                        </RadioGroup>
+                    </FormControl>
+                </Grid> */}
+
+                {/* Sellers permit  */}
+                <Grid item  md={6} xs={12} >
+                    <TextField
+                        id="sellers-permit"
+                        name="sellersPermit"
+                        label="Sellers Permit"
+                        helperText={touched.sellersPermit ? errors.sellersPermit : ""}
+                        error={touched.sellersPermit && Boolean(errors.sellersPermit)}
+                        value={sellersPermit}
+                        onChange={change.bind(null, "sellersPermit")}
+                        fullWidth
+                    />
+                </Grid>
+                
+                {/* ABC Number  */}
+                <Grid item  md={6} xs={12} >
+                    <TextField
+                        id="abc-number"
+                        name="abcNumber"
+                        label="ABC Number"
+                        helperText={touched.abcNumber ? errors.abcNumber : ""}
+                        error={touched.abcNumber && Boolean(errors.abcNumber)}
+                        value={abcNumber}
+                        onChange={change.bind(null, "abcNumber")}
+                        fullWidth
+                    />
+                </Grid>
+
+                {/* Email  */}
+                <Grid item md={6} xs={12} >
+                    <TextField
+                        id="business-email"
+                        name="businessEmail"
+                        label="Email"
+                        helperText={touched.email ? errors.email : ""}
+                        error={touched.email && Boolean(errors.email)}
+                        value={businessEmail}
+                        onChange={change.bind(null, "email")}
+                        fullWidth
+                    />
+                </Grid>
+
+                {/* Phone Number  */}
+                <Grid item md={6} xs={12} >
+                    <TextField
+                        id="business-phone"
+                        name="businessPhone"
+                        label="Phone"
+                        helperText={touched.businessPhone ? errors.businessPhone : ""}
+                        error={touched.businessPhone && Boolean(errors.businessPhone)}
+                        value={businessPhone}
+                        onChange={change.bind(null, "businessPhone")}
+                        fullWidth
+                    />
+                </Grid>
+
+            {/* Address  */}
+                <Grid item md={6} xs={12} >
+                    <TextField
+                        id="business-addr1"
+                        name="businessAddr1"
+                        label="Address"
+                        helperText={touched.businessAddr1 ? errors.businessAddr1 : ""}
+                        error={touched.businessAddr1 && Boolean(errors.businessAddr1)}
+                        value={businessAddr1}
+                        onChange={change.bind(null, "businessAddr1")}
+                        fullWidth
+                    />
+                </Grid>
+
+                <Grid item md={6} xs={12} >
+                <TextField
+                        id="business-city"
+                        name="businessCity"
+                        label="City"
+                        helperText={touched.businessCity ? errors.businessCity : ""}
+                        error={touched.businessCity && Boolean(errors.businessCity)}
+                        value={businessCity}
+                        onChange={change.bind(null, "businessCity")}
+                        fullWidth
+                    />
+                </Grid>
+
+                <Grid item md={6} xs={12} >
+                    <TextField
+                        id="business-state"
+                        name="businessState"
+                        label="State"
+                        helperText={touched.businessState ? errors.businessState : ""}
+                        error={touched.businessState && Boolean(errors.businessState)}
+                        value={businessState}
+                        onChange={change.bind(null, "businessState")}
+                        fullWidth
+                    />
+                </Grid>
+
+                <Grid item md={6} xs={12} >
+                <TextField
+                        id="business-zip"
+                        name="businessZip"
+                        label="Zip Code"
+                        helperText={touched.businessZip ? errors.businessZip : ""}
+                        error={touched.businessZip && Boolean(errors.businessZip)}
+                        value={businessZip}
+                        onChange={change.bind(null, "businessZip")}
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12} >
+                <Button 
+                    disabled={!isValid} 
+                    id="submit-button" 
+                    type="submit"
+                    style={{ background: 'grey', color: 'white', padding: '5px' }} >
+                        Submit
+                </Button>
+                </Grid>
+            {/* end form and address  */}
+            </Grid>
+            </form>
+        </Container>
+        );
+    }
+
+export default AddBusinessForm;
