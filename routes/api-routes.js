@@ -26,12 +26,11 @@ router.get('/cities', (req, res) => {
 
 // Add Business
 
-router.post('/add', (req, res) => {
-    Business.addBusiness(req.business, req, res);
+router.post('/addBusiness', (req, res) => {
+    console.log(req.body)
+    res.send('posted')
+    // Business.addBusiness(req.pendingBusiness)
 })
-
-
-
 
 
 // Promotion Routes

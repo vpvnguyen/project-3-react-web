@@ -19,23 +19,26 @@ const Business = {
     getAllBusiness: () => {
         return knex('business').select()
     }, 
-    
     // Adds a Business
     addBusiness: (obj, req, cb) => {
-        knex('business')
+        knex('Business')
             .insert({
-                name: obj.name, 
-                address1: obj.address1, 
-                city: obj.city, 
-                state: obj.state, 
-                zip: obj.zip, 
-                latitude: obj.latitude, 
-                longitude: obj.longitude,
-                abclicense: obj.abc, 
-                user_id: req.user.id
+                user_id: obj.user_id, 
+                owner_name: obj.ownerName, 
+                business_name: obj.businessName, 
+                address1: obj.businessAddr1, 
+                city: obj.businessCity, 
+                state: obj.businessState, 
+                zip: obj.businessZip, 
+                // latitude: obj.latitude, 
+                // longitude: obj.longitude,
+                abclicense: obj.abcNumber, 
+                email: obj.businessEmail,
+                phone: obj.businessPhone,
+                sellerspermit: obj.sellersPermit
             })
             .then((result) => {
-                cb.send(result); 
+                cb.json(result); 
             })
             .catch(err => console.log(err)); 
     },
