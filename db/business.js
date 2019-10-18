@@ -16,8 +16,13 @@ const geocoder = NodeGeocoder(options);
 // Business Model
 const Business = {
     // Gets all Businesses
-    getAllBusiness: () => {
-        return knex('business').select()
+    getAllBusiness: (cb) => {
+        knex('business')
+            .select('*')
+            .then(response => {
+                cb.json(response)
+            })
+            .catch(err => console.log(err)); 
     }, 
     // Adds a Business
     addBusiness: (obj, req, cb) => {
