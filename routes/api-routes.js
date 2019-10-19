@@ -11,10 +11,7 @@ const Promotions = require('../db/promotions');
 
 // List all businesses
 router.get('/business', (req, res) => {
-    Business.getAllBusiness().then(resp => {
-        console.log('hello')
-        res.json(resp)
-    });
+    Business.getAllBusiness(res)
 });
 
 //get businesses by user 
@@ -25,10 +22,8 @@ router.get('/businessuser/:id', (req, res) => {
 
 // Get List of All Cities
 router.get('/cities', (req, res) => {
-    Business.getAllCities().then(resp => {
-        res.json(resp)
-    })
-})
+    Business.getAllCities(res)
+}); 
 
 // Add Business
 
@@ -38,6 +33,9 @@ router.post('/addBusiness', (req, res) => {
     // Business.addBusiness(req.pendingBusiness)
 })
 
+router.get('/allCities', (req, res) => {
+    Business.getAllCities(res); 
+}); 
 
 // Promotion Routes
 

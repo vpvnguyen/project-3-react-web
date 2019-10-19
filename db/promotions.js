@@ -10,7 +10,6 @@ const Promotions = {
         knex('promotion').leftJoin('business', 'promotion.business_id', 'business.id')
             .where('city', city)
             .then(result => {
-                console.log(result);
                 //map through result to make array of objects for markers 
                 let promotions = result.map(item => {
                     return {
@@ -21,7 +20,6 @@ const Promotions = {
                         longitude: item.longitude
                     }
                 })
-                console.log(promotions); 
                 cb.json(promotions); 
             })
             .catch(err => console.log(err)); 
@@ -54,3 +52,5 @@ const Promotions = {
 
 
 }
+
+module.exports = Promotions; 
