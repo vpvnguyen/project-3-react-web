@@ -14,6 +14,12 @@ router.get('/business', (req, res) => {
     Business.getAllBusiness(res)
 });
 
+//get businesses by user 
+router.get('/businessuser/:id', (req, res) => {
+    console.log(req.params.id); 
+    Business.businessByUser(req.params.id, res);      
+})
+
 // Get List of All Cities
 router.get('/cities', (req, res) => {
     Business.getAllCities(res)

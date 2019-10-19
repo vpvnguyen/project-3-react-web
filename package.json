@@ -13,6 +13,7 @@
     "if-env": "^1.0.4",
     "knex": "^0.19.5",
     "lodash": "^4.17.15",
+    "material-table": "^1.52.0",
     "node-geocoder": "^3.24.0",
     "passport": "^0.4.0",
     "passport-google-oauth": "^2.0.0",

@@ -52,6 +52,15 @@ const Business = {
     getDistinctCities: () => {
         return knex('business').distinct('city')
     }, 
+    businessByUser: (id, cb) => {
+        knex('business')
+            .select('*')
+            .where('user_id', id)
+            .then(response => {
+                cb.json(response);
+            })
+            .catch(err => console.log(err)); 
+    },
     getAllCities: (cb) => {
         knex('cities')
         .select('*')
