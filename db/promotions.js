@@ -26,10 +26,19 @@ const Promotions = {
     },
 
     // Add a Promotion
-    addPromotion: () => {
-
+    addPromotion: (promotion, cb) => {
+        knex('promotion')
+            .insert({
+                business_id: promotion.business_id, 
+                promotion_name: promotion.promotion_name, 
+                qtypeople: promotion.qtypeople, 
+                description: promotion.description
+            })
+            .then(response => {
+                cb.json(response)
+            })
+            .catch(err => console.log(err)); 
     },
-
     //Delete Promotion
     deletePromotion: (id, cb) => {
         knex('promotion')
@@ -39,9 +48,18 @@ const Promotions = {
         })
         .catch(err => console.log(err)); 
     },
-
-    editPromotion: () => {
-
+    editPromotion: (promotion, cb) => {
+        knex('promotion')
+            .where('id', id)
+            .update({
+                description: promotion.description, 
+                qtypeople: promotion.quantity, 
+                promotion_name: promotion.name 
+            })
+            .then(response => {
+                cb.json(response)
+            })
+            .catch(err => console.log(err)); 
     }, 
     getPromotionsByBusiness: (id, cb) => {
         //knex join on promotion where city = the city 
@@ -53,7 +71,8 @@ const Promotions = {
                     return {
                         name: item.promotion_name,
                         quantity: item.qtypeople, 
-                        description: item.description 
+                        description: item.description, 
+                        promotion_id: item.id
                     }
                 })
                 cb.json(promotions); 

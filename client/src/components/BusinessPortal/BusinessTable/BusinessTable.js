@@ -55,7 +55,9 @@ render () {
             }, 600);
           }),
         onRowUpdate: (newData, oldData) =>
+          
           new Promise(resolve => {
+            console.log(newData)
             setTimeout(() => {
               resolve();
               const data = [...this.state.data];
