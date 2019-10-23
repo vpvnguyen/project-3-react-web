@@ -42,13 +42,24 @@ const Promotions = {
 
     editPromotion: () => {
 
-    }
-
-
-
-
-
-
+    }, 
+    getPromotionsByBusiness: (id, cb) => {
+        //knex join on promotion where city = the city 
+        knex('promotion').leftJoin('business', 'promotion.business_id', 'business.id')
+            .where('business_id', id)
+            .then(result => {
+                //map through result to make array of objects for markers 
+                let promotions = result.map(item => {
+                    return {
+                        name: item.promotion_name,
+                        quantity: item.qtypeople, 
+                        description: item.description 
+                    }
+                })
+                cb.json(promotions); 
+            })
+            .catch(err => console.log(err)); 
+    },
 
 
 }

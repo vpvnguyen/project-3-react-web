@@ -20,6 +20,8 @@ export default function Dashboard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [businessInformation, setBusinessInformation] = React.useState(false);
+  const [currentBusiness, setCurrentBusiness] = React.useState(0); 
+  const [hasBusiness, setHasBusiness] = React.useState(false); 
 
   //on mount, we get business User using an ID and update the state
   useEffect(() => {
@@ -27,13 +29,21 @@ export default function Dashboard(props) {
       .get("http://localhost:5000/api/businessuser/" + props.user[0].id)
       .then(function(res) {
         setBusinessInformation(res);
+        setCurrentBusiness(res.data[0].id); 
+        setHasBusiness(true); 
       });
-  }, [open]);
+  }, [currentBusiness]);
+
+  const currentBusinessChange = (id) => {
+    setCurrentBusiness(id); 
+  }; 
+
+
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {businessInformation ? <PersistentDrawer business={businessInformation} /> : console.log('Drawer not mounted yet')}
+      {businessInformation ? <PersistentDrawer business={businessInformation} currentBusinessChange={currentBusinessChange} /> : console.log('Drawer not mounted yet')}
       
       <main
         className={classes.content}
@@ -42,7 +52,8 @@ export default function Dashboard(props) {
         })}
       >
         <Container maxWidth="lg">
-          <BusinessTable />
+          {hasBusiness ? <BusinessTable businessId={currentBusiness}  /> : console.log('not mounted') }
+          
         </Container>
         <Footer />
       </main>

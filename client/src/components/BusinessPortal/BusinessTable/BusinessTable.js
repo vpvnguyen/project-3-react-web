@@ -1,67 +1,82 @@
-import React from "react";
+import React, { Component } from "react";
 import MaterialTable from "material-table";
+import axios from 'axios'; 
 
-export default function MaterialTableDemo() {
-  const [state, setState] = React.useState({
-    columns: [
-      { title: "Name", field: "name" },
-      { title: "Descripton", field: "description" },
-      { title: "Quantity", field: "quantity", type: "numeric" }
-    ],
-    data: [
-      {
-        name: "Cinco De Mayo",
-        description: "15% off on all beers",
-        quantity: 10
-      },
-      {
-        name: "Independence Day",
-        description: "Buy 1 get 1 free",
-        quantity: 15
-      },
-      {
-        name: "SuperBowl",
-        description: "1 Free Appetizer",
-        quantity: 5
+class MaterialTableDemo extends Component {
+    constructor (props) {
+      super(props) 
+      this.state = {
+        columns: [
+          { title: "Name", field: "name" },
+          { title: "Descripton", field: "description" },
+          { title: "Quantity", field: "quantity", type: "numeric" }
+        ],
+         data: [], 
+        businessId: '', 
       }
-    ]
-  });
+    }
 
+
+componentDidUpdate () {
+  if (this.props.businessId !== this.state.businessId) {
+    console.log(this.props.businessId)
+    let url = 'http://localhost:5000/api/promotion/all/business/' + this.props.businessId
+    axios 
+      .get(url)
+      .then(response => {
+        console.log(response)
+        this.setState({
+          data: response.data, 
+          businessId: this.props.businessId
+        })
+      })
+      .catch(err => console.log(err)); 
+    }
+  
+}; 
+
+
+
+render () {
   return (
     <MaterialTable
       style={{ marginTop: "100px" }}
       title="Promotions"
-      columns={state.columns}
-      data={state.data}
+      columns={this.state.columns}
+      data={this.state.data}
       editable={{
         onRowAdd: newData =>
           new Promise(resolve => {
             setTimeout(() => {
               resolve();
-              const data = [...state.data];
+              const data = [...this.state.data];
               data.push(newData);
-              setState({ ...state, data });
+              this.setState({ ...this.state, data });
             }, 600);
           }),
         onRowUpdate: (newData, oldData) =>
           new Promise(resolve => {
             setTimeout(() => {
               resolve();
-              const data = [...state.data];
+              const data = [...this.state.data];
               data[data.indexOf(oldData)] = newData;
-              setState({ ...state, data });
+              this.setState({ ...this.state, data });
             }, 600);
           }),
         onRowDelete: oldData =>
           new Promise(resolve => {
             setTimeout(() => {
               resolve();
-              const data = [...state.data];
+              const data = [...this.state.data];
               data.splice(data.indexOf(oldData), 1);
-              setState({ ...state, data });
+              this.setState({ ...this.state, data });
             }, 600);
           })
       }}
     />
   );
 }
+  
+}
+
+export default MaterialTableDemo; 
