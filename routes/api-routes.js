@@ -52,13 +52,14 @@ router.get("/promotion/all/:city", (req, res) => {
 
 // Delete Promotion
 
-router.post("/promotion/delete/:id"),
-  (req, res) => {
+router.post("/promotion/delete/:id", (req, res) => {
     Promotions.deletePromotion(req.params.id, res);
-  };
+  });
 
 // Edit Promotion
-
+router.put('/promotion/edit', (req, res) => {
+  Promotions.editPromotion(req.body.promotion, res)
+}); 
 // Home -> Landing Page
 // Landing Page -> Login -> Dashboard
 // Landing Page -> Apple Store
