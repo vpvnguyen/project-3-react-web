@@ -17,6 +17,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import Button from '@material-ui/core/Button';
+
 import axios from "axios";
 
 const drawerWidth = 240;
@@ -151,7 +153,7 @@ export default function PersistentDrawerLeft(props) {
         <Divider />
         <List>
           {data.map((text, index) => (
-                <ListItem button data-tag={text} data-id={dataIDs[index]} onClick={handleListClick}  key={text}>
+                <ListItem button={true} type={'button'} data-tag={text} data-id={dataIDs[index]} onClick={handleListClick}  key={text}>
                   <ListItemIcon>
                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                   </ListItemIcon>

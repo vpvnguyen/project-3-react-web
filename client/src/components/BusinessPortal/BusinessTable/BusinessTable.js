@@ -20,7 +20,7 @@ class MaterialTableDemo extends Component {
 componentDidUpdate () {
   if (this.props.businessId !== this.state.businessId) {
     console.log(this.props.businessId)
-    let url = 'http://localhost:5000/api/promotion/all/business/' + this.props.businessId
+    let url = 'http://localhost:5000/api/promotion/all/business/' + this.props.businessId;
     axios 
       .get(url)
       .then(response => {

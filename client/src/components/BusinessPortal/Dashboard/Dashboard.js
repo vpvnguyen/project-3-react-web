@@ -32,9 +32,10 @@ export default function Dashboard(props) {
         setCurrentBusiness(res.data[0].id); 
         setHasBusiness(true); 
       });
-  }, [currentBusiness]);
+  }, [open]);
 
   const currentBusinessChange = (id) => {
+    console.log('setting')
     setCurrentBusiness(id); 
   }; 
 
