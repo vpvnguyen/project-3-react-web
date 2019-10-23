@@ -1,65 +1,58 @@
-const router = require('express').Router();
-const passport = require('passport');
-const Business = require('../db/business');
-const Promotions = require('../db/promotions');
+const router = require("express").Router();
+const passport = require("passport");
+const Business = require("../db/business");
+const Promotions = require("../db/promotions");
 
 // Redirect Routes
-
-
 
 // Business Routes
 
 // List all businesses
-router.get('/business', (req, res) => {
-    Business.getAllBusiness(res)
+router.get("/business", (req, res) => {
+  Business.getAllBusiness(res);
 });
 
-//get businesses by user 
-router.get('/businessuser/:id', (req, res) => {
-    console.log(req.params.id); 
-    Business.businessByUser(req.params.id, res);      
-})
+//get businesses by user
+router.get("/businessuser/:id", (req, res) => {
+  console.log(req.params.id);
+  Business.businessByUser(req.params.id, res);
+});
 
 // Get List of All Cities
-router.get('/cities', (req, res) => {
-    Business.getAllCities(res)
-}); 
+router.get("/cities", (req, res) => {
+  Business.getAllCities(res);
+});
 
 // Add Business
 
-router.post('/addBusiness', (req, res) => {
-    console.log(req.body)
-    res.send('posted')
-    // Business.addBusiness(req.pendingBusiness)
-})
+router.post("/addBusiness", (req, res) => {
+  console.log(req.body);
+  res.send("posted");
+  // Business.addBusiness(req.pendingBusiness)
+});
 
-router.get('/allCities', (req, res) => {
-    Business.getAllCities(res); 
-}); 
+router.get("/allCities", (req, res) => {
+  Business.getAllCities(res);
+});
 
 // Promotion Routes
 
 // Get Promotions in City
 
-router.get('/promotion/all/:city', (req, res) => {
-    Promotions.getPromotionsInCity(req.params.city, res)
+router.get("/promotion/all/:city", (req, res) => {
+  Promotions.getPromotionsInCity(req.params.city, res);
 });
 
 // Add Promotion
 
 // Delete Promotion
 
-router.post('/promotion/delete/:id'), (req, res) => {
-    Promotions.deletePromotion(req.params.id, res)
-}
+router.post("/promotion/delete/:id"),
+  (req, res) => {
+    Promotions.deletePromotion(req.params.id, res);
+  };
 
 // Edit Promotion
-
-
-
-
-
-
 
 // Home -> Landing Page
 // Landing Page -> Login -> Dashboard
