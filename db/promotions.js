@@ -43,8 +43,9 @@ const Promotions = {
     deletePromotion: (id, cb) => {
         knex('promotion')
         .where('id', id)
-        .update({
-            isActive: 'false'
+        .del()
+        .then(res => {
+            cb.json(res)
         })
         .catch(err => console.log(err)); 
     },
@@ -67,7 +68,9 @@ const Promotions = {
             .where('business_id', id)
             .then(result => {
                 //map through result to make array of objects for markers 
+                console.log(result)
                 let promotions = result.map(item => {
+
                     return {
                         name: item.promotion_name,
                         quantity: item.qtypeople, 

@@ -53,18 +53,19 @@ class MaterialTableDemo extends Component {
 
                 //adds new item to the DB
                 let url = "http://localhost:5000/api/promotion/add";
-                axios.post(url, {
-                  business_id: this.props.businessId,
-                  promotion_name: newData.name,
-                  qtypeople: newData.quantity,
-                  description: newData.description
-                })
-                .then(function(res) {
-                  console.log(res);
-                })
-                .catch(err => {
-                  if (err) throw err;
-                })
+                axios
+                  .post(url, {
+                    business_id: this.props.businessId,
+                    promotion_name: newData.name,
+                    qtypeople: newData.quantity,
+                    description: newData.description
+                  })
+                  .then(function(res) {
+                    console.log(res);
+                  })
+                  .catch(err => {
+                    if (err) throw err;
+                  });
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -81,9 +82,19 @@ class MaterialTableDemo extends Component {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
+                alert(JSON.stringify(oldData))
                 const data = [...this.state.data];
                 data.splice(data.indexOf(oldData), 1);
                 this.setState({ ...this.state, data });
+                console.log(oldData.promotion_id)
+                let url = "http://localhost:5000/api/promotion/delete/" + oldData.promotion_id;
+                axios.post(url)
+                .then(res => {
+                  console.log(res);
+                })
+                .catch(err => {
+                  if (err) throw err
+                })
               }, 600);
             })
         }}
