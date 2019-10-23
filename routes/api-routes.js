@@ -37,10 +37,10 @@ router.get("/allCities", (req, res) => {
 
 // Promotion Routes
 
-//Get Promotion by business id 
-router.get('/promotion/all/business/:id', (req, res) => {
-  Promotions.getPromotionsByBusiness(req.params.id, res)
-}); 
+//Get Promotion by business id
+router.get("/promotion/all/business/:id", (req, res) => {
+  Promotions.getPromotionsByBusiness(req.params.id, res);
+});
 
 // Get Promotions in City
 
@@ -49,17 +49,20 @@ router.get("/promotion/all/:city", (req, res) => {
 });
 
 // Add Promotion
+router.post("/promotion/add", (req, res) => {
+Promotions.addPromotion(req.body, res)
+});
 
 // Delete Promotion
 
 router.post("/promotion/delete/:id", (req, res) => {
-    Promotions.deletePromotion(req.params.id, res);
-  });
+  Promotions.deletePromotion(req.params.id, res);
+});
 
 // Edit Promotion
-router.put('/promotion/edit', (req, res) => {
-  Promotions.editPromotion(req.body.promotion, res)
-}); 
+router.put("/promotion/edit", (req, res) => {
+  Promotions.editPromotion(req.body.promotion, res);
+});
 // Home -> Landing Page
 // Landing Page -> Login -> Dashboard
 // Landing Page -> Apple Store
