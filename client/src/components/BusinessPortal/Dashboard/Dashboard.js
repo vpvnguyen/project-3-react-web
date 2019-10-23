@@ -21,14 +21,14 @@ export default function Dashboard(props) {
   const [open, setOpen] = React.useState(true);
   const [businessInformation, setBusinessInformation] = React.useState(false);
 
+  //on mount, we get business User using an ID and update the state
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/businessuser/" + props.user[0].id)
       .then(function(res) {
-
         setBusinessInformation(res);
       });
-  });
+  }, [open]);
 
   return (
     <div className={classes.root}>
