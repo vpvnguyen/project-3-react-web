@@ -37,6 +37,11 @@ router.get("/allCities", (req, res) => {
 
 // Promotion Routes
 
+//Get Promotion by business id 
+router.get('/promotion/all/business/:id', (req, res) => {
+  Promotions.getPromotionsByBusiness(req.params.id, res)
+}); 
+
 // Get Promotions in City
 
 router.get("/promotion/all/:city", (req, res) => {

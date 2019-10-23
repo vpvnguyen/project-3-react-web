@@ -90,6 +90,7 @@ export default function PersistentDrawerLeft(props) {
   const [open, setOpen] = React.useState(false);
   let data = props.business.data.map((item) => {return item.business_name})
   const [title, setTitle] = React.useState(data[0]);
+  let dataIDs = props.business.data.map((item) => {return item.id}); 
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -101,6 +102,7 @@ export default function PersistentDrawerLeft(props) {
 
   const handleListClick = (e) => {
     const location = e.currentTarget.dataset.tag
+    props.currentBusinessChange(e.currentTarget.dataset.id); 
     setTitle(location)
   }
 
@@ -149,7 +151,7 @@ export default function PersistentDrawerLeft(props) {
         <Divider />
         <List>
           {data.map((text, index) => (
-                <ListItem button data-tag={text} onClick={handleListClick}  key={text}>
+                <ListItem button data-tag={text} data-id={dataIDs[index]} onClick={handleListClick}  key={text}>
                   <ListItemIcon>
                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                   </ListItemIcon>
