@@ -76,25 +76,39 @@ class MaterialTableDemo extends Component {
                 const data = [...this.state.data];
                 data[data.indexOf(oldData)] = newData;
                 this.setState({ ...this.state, data });
+                let url = "http://localhost:3000/api/promotion/edit";
+                axios
+                  .put(url, newData)
+                  .then(function(res) {
+                    console.log(res);
+                  })
+                  .catch(function(err) {
+                    if (err) throw err;
+                  });
               }, 600);
             }),
           onRowDelete: oldData =>
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                alert(JSON.stringify(oldData))
+                alert(JSON.stringify(oldData));
                 const data = [...this.state.data];
                 data.splice(data.indexOf(oldData), 1);
                 this.setState({ ...this.state, data });
-                console.log(oldData.promotion_id)
-                let url = "http://localhost:5000/api/promotion/delete/" + oldData.promotion_id;
-                axios.post(url)
-                .then(res => {
-                  console.log(res);
-                })
-                .catch(err => {
-                  if (err) throw err
-                })
+                console.log(oldData.promotion_id);
+
+                //deletes item from DB
+                let url =
+                  "http://localhost:5000/api/promotion/delete/" +
+                  oldData.promotion_id;
+                axios
+                  .post(url)
+                  .then(res => {
+                    console.log(res);
+                  })
+                  .catch(err => {
+                    if (err) throw err;
+                  });
               }, 600);
             })
         }}
