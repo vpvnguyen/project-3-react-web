@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 // reset css material-ui
 import CssBaseline from '@material-ui/core/CssBaseline';
-import PropTypes from "prop-types";
 // material-ui
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import LocalBarIcon from '@material-ui/icons/LocalBar';
 import Footer from '../Footer/Footer';
 
