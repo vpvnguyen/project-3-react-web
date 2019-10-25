@@ -26,7 +26,7 @@ export default function Dashboard(props) {
   //on mount, we get business User using an ID and update the state
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/businessuser/" + props.user[0].id)
+      .get("http://3.132.214.172//api/businessuser/" + props.user[0].id)
       .then(function(res) {
         setBusinessInformation(res);
         setCurrentBusiness(res.data[0].id); 
