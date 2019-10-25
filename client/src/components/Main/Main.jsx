@@ -4,8 +4,6 @@ import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Dashboard from '../BusinessPortal/Dashboard/Dashboard.js';
 import PropTypes from "prop-types";
-import { AddBusinessForm } from '../BusinessPortal/AddBusiness/AddBusinessForm/AddBusinessForm.jsx'; 
-import AddBusinessPage from '../BusinessPortal/AddBusiness/AddBusinessPage/AddBusiness.jsx'
 
 const theme = createMuiTheme({
     palette: {
@@ -69,7 +67,6 @@ class Main extends Component {
 
 
     render() {
-        const { authenticated } = this.state;
         return (
             <div className="container">
                 <ThemeProvider theme={theme} >

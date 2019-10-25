@@ -11,7 +11,7 @@ export default function MobileApp() {
         <Button
             type="submit"
             fullWidth
-            variant="outline"
+            variant="outlined"
             color="inherit"
             onClick={handleClicks}
         >

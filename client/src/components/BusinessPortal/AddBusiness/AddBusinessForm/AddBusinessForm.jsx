@@ -1,33 +1,14 @@
-import React, { Component } from 'react'; 
+import React from 'react'; 
 
-//form style imports 
-import { FormControl, InputLabel, FormHelperText, Input } from '@material-ui/core';
 //page style imports 
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 //making styles import 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
-
-
-//styles object 
-const styles = {
-    outlined: {
-        backgroundColor: 'red',
-        color: 'red'
-    }
-  };
 
   const useStyles = makeStyles(theme => ({
     activeButton: {
@@ -93,7 +74,6 @@ const styles = {
                         name="ownerName"
                         label="Owner"
                         required={true}
-                        id="name"
                         helperText={touched.ownerName ? errors.ownerName : ""}
                         error={touched.ownerName && Boolean(errors.ownerName)}
                         value={ownerName}
