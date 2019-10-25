@@ -61,7 +61,8 @@ router.post("/promotion/delete/:id", (req, res) => {
 
 // Edit Promotion
 router.put("/promotion/edit", (req, res) => {
-  Promotions.editPromotion(req.body.promotion, res);
+  console.log("back", req.body)
+  Promotions.editPromotion(req.body, res);
 });
 // Home -> Landing Page
 // Landing Page -> Login -> Dashboard

@@ -18,14 +18,12 @@ class MaterialTableDemo extends Component {
 
   componentDidUpdate() {
     if (this.props.businessId !== this.state.businessId) {
-      console.log(this.props.businessId);
       let url =
         "http://localhost:5000/api/promotion/all/business/" +
         this.props.businessId;
       axios
         .get(url)
         .then(response => {
-          console.log(response);
           this.setState({
             data: response.data,
             businessId: this.props.businessId
@@ -70,7 +68,6 @@ class MaterialTableDemo extends Component {
             }),
           onRowUpdate: (newData, oldData) =>
             new Promise(resolve => {
-              console.log(newData);
               setTimeout(() => {
                 resolve();
                 const data = [...this.state.data];
@@ -91,11 +88,9 @@ class MaterialTableDemo extends Component {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                alert(JSON.stringify(oldData));
                 const data = [...this.state.data];
                 data.splice(data.indexOf(oldData), 1);
                 this.setState({ ...this.state, data });
-                console.log(oldData.promotion_id);
 
                 //deletes item from DB
                 let url =
@@ -104,7 +99,7 @@ class MaterialTableDemo extends Component {
                 axios
                   .post(url)
                   .then(res => {
-                    console.log(res);
+                    console.log("delete", res);
                   })
                   .catch(err => {
                     if (err) throw err;
