@@ -36,7 +36,7 @@ class Main extends Component {
     //   because we are using cookies on mount it will check for authenticated users 
       componentDidMount() {
           //hits auth/login/success on node server 
-        fetch("http://3.132.214.172//auth/login/success", {
+        fetch("http://3.132.214.172/auth/login/success", {
           method: "GET",
           credentials: "include",
           //cors headers
