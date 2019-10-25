@@ -18,10 +18,10 @@ const useStyles = makeStyles(theme => ({}));
 // render dashboard
 export default function Dashboard(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open] = React.useState(true);
   const [businessInformation, setBusinessInformation] = React.useState(false);
-  const [currentBusiness, setCurrentBusiness] = React.useState(0); 
-  const [hasBusiness, setHasBusiness] = React.useState(false); 
+  const [currentBusiness, setCurrentBusiness] = React.useState(0);
+  const [hasBusiness, setHasBusiness] = React.useState(false);
 
   //on mount, we get business User using an ID and update the state
   useEffect(() => {
@@ -29,32 +29,42 @@ export default function Dashboard(props) {
       .get("http://localhost:5000/api/businessuser/" + props.user[0].id)
       .then(function(res) {
         setBusinessInformation(res);
-        setCurrentBusiness(res.data[0].id); 
-        setHasBusiness(true); 
+        setCurrentBusiness(res.data[0].id);
+        setHasBusiness(true);
       });
-  }, [open]);
+  }, [props.user]);
 
-  const currentBusinessChange = (id) => {
-    console.log('setting')
-    setCurrentBusiness(id); 
-  }; 
-
-
+  const currentBusinessChange = id => {
+    console.log("setting");
+    setCurrentBusiness(id);
+  };
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {businessInformation ? <PersistentDrawer business={businessInformation} currentBusinessChange={currentBusinessChange} /> : console.log('Drawer not mounted yet')}
-      
+      {businessInformation ? (
+        <PersistentDrawer
+          business={businessInformation}
+          currentBusinessChange={currentBusinessChange}
+          userName={props.user[0].name}
+        />
+      ) : (
+        console.log("Drawer not mounted")
+      )}
+
       <main
-        className={classes.content}
         className={clsx(classes.content, {
           [classes.contentShift]: open
         })}
       >
         <Container maxWidth="lg">
-          {hasBusiness ? <BusinessTable businessId={currentBusiness}  /> : console.log('not mounted') }
-          
+          <div>
+            {hasBusiness ? (
+              <BusinessTable businessId={currentBusiness} />
+            ) : (
+              console.log("not mounted")
+            )}
+          </div>
         </Container>
         <Footer />
       </main>

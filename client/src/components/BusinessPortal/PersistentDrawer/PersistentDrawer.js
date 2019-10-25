@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -15,19 +15,10 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import Button from '@material-ui/core/Button';
-
-import axios from "axios";
+import LocalBarIcon from "@material-ui/icons/LocalBar";
+import Grid from "@material-ui/core/Grid";
 
 const drawerWidth = 240;
-
-/**
- * This function will retreive all the stores a business has
- * to render them in the sideBar
- */
-const getAllStoreFromBusiness = () => {};
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -83,6 +74,13 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
+  }, 
+  toolBar: {
+    width: '100%'
+  }, 
+  toolBarItemCenter: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 }));
 
@@ -90,9 +88,13 @@ export default function PersistentDrawerLeft(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  let data = props.business.data.map((item) => {return item.business_name})
+  let data = props.business.data.map(item => {
+    return item.business_name;
+  });
   const [title, setTitle] = React.useState(data[0]);
-  let dataIDs = props.business.data.map((item) => {return item.id}); 
+  let dataIDs = props.business.data.map(item => {
+    return item.id;
+  });
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -102,11 +104,11 @@ export default function PersistentDrawerLeft(props) {
     setOpen(false);
   };
 
-  const handleListClick = (e) => {
-    const location = e.currentTarget.dataset.tag
-    props.currentBusinessChange(e.currentTarget.dataset.id); 
-    setTitle(location)
-  }
+  const handleListClick = e => {
+    const location = e.currentTarget.dataset.tag;
+    props.currentBusinessChange(e.currentTarget.dataset.id);
+    setTitle(location);
+  };
 
   return (
     <div className={classes.root}>
@@ -117,20 +119,35 @@ export default function PersistentDrawerLeft(props) {
           [classes.appBarShift]: open
         })}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+        <Grid 
+            container
+            justify='space-between'
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            {title}
-          </Typography>
+        
+        <Toolbar className={classes.toolBar}>
+          
+            <Grid item md={2} xs={2}>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Grid>
+            <Grid className={classes.toolBarItemCenter} item md={8} xs={8}>
+              <Typography variant="h6" noWrap>
+                {title}
+              </Typography>
+            </Grid>
+            <Grid item md={2} xs={2}>
+              <Typography> {props.userName}</Typography>
+            </Grid>
+          
         </Toolbar>
+        </Grid>
       </AppBar>
       <Drawer
         className={classes.drawer}
@@ -153,14 +170,20 @@ export default function PersistentDrawerLeft(props) {
         <Divider />
         <List>
           {data.map((text, index) => (
-                <ListItem button={true} type={'button'} data-tag={text} data-id={dataIDs[index]} onClick={handleListClick}  key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} business={text}/>
-                </ListItem>
-              ))
-          }
+            <ListItem
+              button={true}
+              type={"button"}
+              data-tag={text}
+              data-id={dataIDs[index]}
+              onClick={handleListClick}
+              key={text}
+            >
+              <ListItemIcon>
+                <LocalBarIcon />
+              </ListItemIcon>
+              <ListItemText primary={text} business={text} />
+            </ListItem>
+          ))}
         </List>
       </Drawer>
     </div>

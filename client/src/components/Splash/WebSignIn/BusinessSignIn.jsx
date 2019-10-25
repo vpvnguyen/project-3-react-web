@@ -1,6 +1,4 @@
 import React from 'react';
-import axios from 'axios'; 
-import AddBusiness from '../../BusinessPortal/AddBusiness/AddBusinessPage/AddBusiness.jsx'
 import {
     BrowserRouter as Router,
     Switch,
@@ -26,13 +24,6 @@ const handleLogInClicks = () => {
     // route to auth
     window.open("http://localhost:5000/auth/google", "_self");
 };
-
-const handleDashboardClicks = () => {
-    console.log('dashboard');
-    // route to auth
-    window.open("http://localhost:5000/auth/google", "_self");
-};
-
 
 // render components
 export default function BusinessSignIn(props) {

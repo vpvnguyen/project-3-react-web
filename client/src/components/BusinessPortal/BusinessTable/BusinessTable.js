@@ -18,17 +18,17 @@ class MaterialTableDemo extends Component {
 
   componentDidMount() {
     let url =
-      "http://localhost:5000/api/promotion/all/business/" +
-      this.props.businessId;
-    axios
-      .get(url)
-      .then(response => {
-        this.setState({
-          data: response.data,
-          businessId: this.props.businessId
-        });
-      })
-      .catch(err => console.log(err));
+    "http://localhost:5000/api/promotion/all/business/" +
+    this.props.businessId;
+  axios
+    .get(url)
+    .then(response => {
+      this.setState({
+        data: response.data,
+        businessId: this.props.businessId
+      });
+    })
+    .catch(err => console.log(err));
   }
 
   componentDidUpdate() {

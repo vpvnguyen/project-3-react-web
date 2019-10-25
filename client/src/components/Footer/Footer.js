@@ -13,7 +13,7 @@ export default function Footer() {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Dat Bomb Beer App for BzNz
+        Cheers
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
