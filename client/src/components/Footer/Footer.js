@@ -13,7 +13,7 @@ export default function Footer() {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Cheers
+        Brew
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
