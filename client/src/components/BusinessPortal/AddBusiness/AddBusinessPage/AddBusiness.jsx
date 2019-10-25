@@ -63,7 +63,7 @@ class AddBusinessPage extends Component {
     let user = this.props.user
     pendingBusiness.user_id = user[0].id
     axios
-        .post('http://localhost:5000/api/addBusiness', pendingBusiness)
+        .post('http://3.132.214.172/api/addBusiness', pendingBusiness)
         .then(result => {
             console.log(result)
         })
