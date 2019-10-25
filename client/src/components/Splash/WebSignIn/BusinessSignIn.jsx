@@ -22,14 +22,14 @@ const useStyles = makeStyles(theme => ({
 const handleLogInClicks = () => {
     console.log('login');
     // route to auth
-    window.open("http://3.132.214.172/auth/google", "_self");
+    window.open("http://localhost:3000/auth/google", "_self");
 };
 
 
 const handleDashboardClicks = () => {
     console.log('dashboard');
     // route to auth
-    window.open("http://3.132.214.172/auth/google", "_self");
+    window.open("http://localhost:3000/auth/google", "_self");
 };
 
 // render components
