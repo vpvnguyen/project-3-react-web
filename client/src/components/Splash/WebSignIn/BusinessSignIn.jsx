@@ -5,11 +5,13 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import Dashboard from '../../BusinessPortal/Dashboard/Dashboard';
 
 // material-ui
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+
+// components
+import Dashboard from '../../BusinessPortal/Dashboard/Dashboard.js';
 
 // styling
 const useStyles = makeStyles(theme => ({
@@ -53,7 +55,7 @@ export default function BusinessSignIn(props) {
                 </Switch>
             </Router>
 
-        )
+        );
     } else if (props.authenticated === false) {
         return (
             <Button
@@ -66,7 +68,7 @@ export default function BusinessSignIn(props) {
             >
                 Login in with Google
             </Button>
-        )
+        );
     } else if (props.authenticated) {
         return (
             <Button
@@ -79,6 +81,6 @@ export default function BusinessSignIn(props) {
             >
                 Claim a business
             </Button>
-        )
-    }
-}
+        );
+    };
+};

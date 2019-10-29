@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 
 // material-ui
@@ -8,10 +8,10 @@ import clsx from "clsx";
 import Container from "@material-ui/core/Container";
 
 // components
-import Footer from "../../Footer/Footer";
-import PersistentDrawer from "../PersistentDrawer/PersistentDrawer";
-import BusinessTable from "../BusinessTable/BusinessTable";
-import { useEffect } from "react";
+import Footer from "../../Footer/Footer.js";
+import PersistentDrawer from "../PersistentDrawer/PersistentDrawer.js";
+import BusinessTable from "../BusinessTable/BusinessTable.js";
+
 // set styling
 const useStyles = makeStyles(theme => ({}));
 

@@ -13,6 +13,7 @@ export default function Title(props) {
     );
 }
 
+// REFACTOR ???
 Title.propTypes = {
     children: PropTypes.node,
 };

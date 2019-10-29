@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Formik } from "formik";
 import withStyles from "@material-ui/core/styles/withStyles";
-import AddBusinessForm from "../AddBusinessForm/AddBusinessForm.jsx";
 import Paper from "@material-ui/core/Paper";
 import * as Yup from "yup";
 import CloseIcon from '@material-ui/icons/Close';
 import Icon from '@material-ui/core/Icon';
 import axios from 'axios';
+
+// component
+import AddBusinessForm from "../AddBusinessForm/AddBusinessForm.jsx";
 
 //styling 
 const styles = theme => ({
