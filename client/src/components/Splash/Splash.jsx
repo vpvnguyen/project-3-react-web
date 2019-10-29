@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-// reset css material-ui
-import CssBaseline from '@material-ui/core/CssBaseline';
+
 // material-ui
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LocalBarIcon from '@material-ui/icons/LocalBar';
-import Footer from '../Footer/Footer';
+import withStyles from "@material-ui/core/styles/withStyles";
 
 // components
 import BusinessSignIn from './WebSignIn/BusinessSignIn.jsx';
 import MobileApp from './MobileApp/MobileApp.jsx';
-import withStyles from "@material-ui/core/styles/withStyles";
-import AddBusiness from '../BusinessPortal/AddBusiness/AddBusinessPage/AddBusiness';
+import AddBusiness from '../BusinessPortal/AddBusiness/AddBusinessPage/AddBusiness.jsx';
+import Footer from '../Footer/Footer.js';
 
 // styling; export to css
 const styles = (theme) => ({
@@ -46,31 +46,28 @@ const styles = (theme) => ({
     },
 });
 
-
 // render sign in page
 class Splash extends Component {
     constructor(props) {
-        super(props) 
-        this.state ={
+        super(props)
+        this.state = {
             claimBusiness: false
-        }
-    }
-    
-    
+        };
+    };
+
     claimBusinessClick = () => {
         this.setState({
             claimBusiness: true
-        }); 
-    }; 
+        });
+    };
 
     closeForm = () => {
         this.setState({
             claimBusiness: false
-        }); 
-    }; 
+        });
+    };
 
-
-    render (props) {
+    render(props) {
         const { classes } = this.props;
         let showForm = this.state.claimBusiness
 
@@ -84,12 +81,12 @@ class Splash extends Component {
                             <LocalBarIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Dat Beer App
+                            Dat Beer App 2.0
                         </Typography>
-                            <BusinessSignIn user={this.props.user} handleClaimClick={this.claimBusinessClick} authenticated={this.props.authenticated}/> 
-                            {showForm ? <AddBusiness user={this.props.user} closeForm={this.closeForm} /> : <div></div>}
-                            <p>or</p>
-                            <MobileApp /> 
+                        <BusinessSignIn user={this.props.user} handleClaimClick={this.claimBusinessClick} authenticated={this.props.authenticated} />
+                        {showForm ? <AddBusiness user={this.props.user} closeForm={this.closeForm} /> : <div></div>}
+                        <p>or</p>
+                        <MobileApp />
                         <Box mt={5}>
                             <Footer />
                         </Box>
@@ -97,8 +94,7 @@ class Splash extends Component {
                 </Grid>
             </Grid>
         );
-    }
-}
-
+    };
+};
 
 export default withStyles(styles)(Splash); 

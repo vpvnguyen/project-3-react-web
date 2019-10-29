@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 // material-ui
-import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,19 +8,12 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Fab from '@material-ui/core/Fab';
-import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
-import AddCircleOutlinedIcon from '@material-ui/icons/AddCircleOutlined';
-import teal from '@material-ui/core/colors/teal';
-
-
-import { createMuiTheme } from '@material-ui/core/styles';
-
-import PromotionForm from '../PromotionForm/PromotionForm'
 
 // components
-import Title from '../Title/Title';
+import Title from '../Title/Title.js';
+import PromotionForm from '../PromotionForm/PromotionForm.js'
 
 // constructor for creating mock data
 function createData(id, name, qtypeople, description) {
@@ -55,17 +47,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-// trying to add button color; may need to theme the entire page
-// const addIconColor = teal[200]; // #80cbc4
-// const theme = createMuiTheme({
-//     palette: {
-//         primary: addIconColor,
-//         secondary: {
-//             main: '#f44336',
-//         },
-//     },
-// });
-
+// REFACTOR unhandled functions
 const addPromotion = () => {
     console.log('add promo');
 };
@@ -73,8 +55,6 @@ const addPromotion = () => {
 const deletePromotion = () => {
     console.log('delete promo');
 };
-
-
 
 // render promotions
 export default function Promotions() {
@@ -94,20 +74,18 @@ export default function Promotions() {
                         <TableCell>name</TableCell>
                         <TableCell>description</TableCell>
                         <TableCell>qtypeople</TableCell>
-                        {/* <TableCell align="right">Some buttons</TableCell> */}
                     </TableRow>
                 </TableHead>
 
                 {/* promo information */}
                 <TableBody>
 
-                    {/* mapo through promo response and append data to promo table */}
+                    {/* map through promo response and append data to promo table */}
                     {rows.map(row => (
                         <TableRow key={row.id}>
                             <TableCell>{row.name}</TableCell>
                             <TableCell>{row.qtypeople}</TableCell>
                             <TableCell>{row.description}</TableCell>
-                            {/* <TableCell align="right">{row.amount}</TableCell> */}
                         </TableRow>
                     ))}
 
@@ -115,9 +93,9 @@ export default function Promotions() {
 
             </Table>
             <div className={classes.promoBottom}>
-                <Fab size="small" variant="extended" aria-label="delete" className={classes.fab}       onClick={() => {
-            formActive ? setActive(false) : setActive(true);
-          }}>
+                <Fab size="small" variant="extended" aria-label="delete" className={classes.fab} onClick={() => {
+                    formActive ? setActive(false) : setActive(true);
+                }}>
                     <AddIcon className={classes.extendedIcon} />
                     Add Promotion
                 </Fab>
@@ -125,10 +103,10 @@ export default function Promotions() {
                     <DeleteIcon className={classes.extendedIcon} />
                     Delete Promotion
                 </Fab>
-                {formActive ? <PromotionForm formContents= {addPromotion}/> : <span></span>}
+                {formActive ? <PromotionForm formContents={addPromotion} /> : <span></span>}
 
             </div>
         </React.Fragment>
 
     );
-}
+};

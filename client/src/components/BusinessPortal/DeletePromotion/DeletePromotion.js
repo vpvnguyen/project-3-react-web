@@ -9,15 +9,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles } from "@material-ui/core/styles";
-import Zoom from '@material-ui/core/Zoom'
+import Zoom from '@material-ui/core/Zoom';
 
 // styling
 const useStyles = makeStyles(theme => ({
-    // promo bottom
-    promoText: {
-      fontWeight: 'bold'
-    }
-  }));
+  // promo bottom
+  promoText: {
+    fontWeight: 'bold'
+  }
+}));
 
 export default function DeletePromotion(props) {
   const [open, setOpen] = React.useState(false);
@@ -62,4 +62,4 @@ export default function DeletePromotion(props) {
       </Dialog>
     </>
   );
-}
+};

@@ -74,10 +74,10 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
-  }, 
+  },
   toolBar: {
     width: '100%'
-  }, 
+  },
   toolBarItemCenter: {
     display: 'flex',
     justifyContent: 'center'
@@ -119,13 +119,13 @@ export default function PersistentDrawerLeft(props) {
           [classes.appBarShift]: open
         })}
       >
-        <Grid 
-            container
-            justify='space-between'
-          >
-        
-        <Toolbar className={classes.toolBar}>
-          
+        <Grid
+          container
+          justify='space-between'
+        >
+
+          <Toolbar className={classes.toolBar}>
+
             <Grid item md={2} xs={2}>
               <IconButton
                 color="inherit"
@@ -145,8 +145,8 @@ export default function PersistentDrawerLeft(props) {
             <Grid item md={2} xs={2}>
               <Typography> {props.userName}</Typography>
             </Grid>
-          
-        </Toolbar>
+
+          </Toolbar>
         </Grid>
       </AppBar>
       <Drawer
@@ -163,8 +163,8 @@ export default function PersistentDrawerLeft(props) {
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (
-              <ChevronRightIcon />
-            )}
+                <ChevronRightIcon />
+              )}
           </IconButton>
         </div>
         <Divider />
@@ -188,4 +188,4 @@ export default function PersistentDrawerLeft(props) {
       </Drawer>
     </div>
   );
-}
+};

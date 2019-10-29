@@ -4,12 +4,14 @@ import {
     Switch,
     Route,
     Link
-  } from "react-router-dom";
-import Dashboard from '../../BusinessPortal/Dashboard/Dashboard'; 
+} from "react-router-dom";
 
 // material-ui
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+
+// components
+import Dashboard from '../../BusinessPortal/Dashboard/Dashboard.js';
 
 // styling
 const useStyles = makeStyles(theme => ({
@@ -20,16 +22,14 @@ const useStyles = makeStyles(theme => ({
 
 // events
 const handleLogInClicks = () => {
-    console.log('login');
     // route to auth
-    window.open("http://localhost:3000/auth/google", "_self");
+    window.open("http://localhost:5000/auth/google", "_self"); // REFACTOR FROM 3000 to 5000
 };
 
-
-const handleDashboardClicks = () => {
+const handleDashboardClicks = () => { // REFACTOR inconsistent name
     console.log('dashboard');
     // route to auth
-    window.open("http://localhost:3000/auth/google", "_self");
+    window.open("http://localhost:5000/auth/google", "_self"); // REFACTOR FROM 3000 to 5000
 };
 
 // render components
@@ -44,7 +44,7 @@ export default function BusinessSignIn(props) {
                     variant="outlined"
                     color="secondary"
                     className={classes.btnSpacing}
-                    onClick={() => this.handleDashboardClick()}
+                    onClick={handleDashboardClicks} // REFACTOR from callback to definition
                 >
                     <Link to='/dashboard' >Business Dashboard</Link>
                 </Button>
@@ -54,9 +54,9 @@ export default function BusinessSignIn(props) {
                     </Route>
                 </Switch>
             </Router>
-            
-        )
-    } else if (props.authenticated === false ) {
+
+        );
+    } else if (props.authenticated === false) {
         return (
             <Button
                 type="submit"
@@ -68,7 +68,7 @@ export default function BusinessSignIn(props) {
             >
                 Login in with Google
             </Button>
-        )
+        );
     } else if (props.authenticated) {
         return (
             <Button
@@ -77,10 +77,10 @@ export default function BusinessSignIn(props) {
                 variant="outlined"
                 color="secondary"
                 className={classes.btnSpacing}
-                onClick={() => props.handleClaimClick()}
+                onClick={() => props.handleClaimClick()} // REFACTOR method not handled properly
             >
                 Claim a business
             </Button>
-        )
-    }
-}
+        );
+    };
+};

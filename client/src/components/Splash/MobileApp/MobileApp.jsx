@@ -6,7 +6,6 @@ const handleClicks = () => {
 };
 
 export default function MobileApp() {
-
     return (
         <Button
             type="submit"
@@ -17,5 +16,5 @@ export default function MobileApp() {
         >
             Get the App for iOS and Android!
         </Button>
-    )
-}
+    );
+};
