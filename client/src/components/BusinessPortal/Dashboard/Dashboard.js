@@ -27,7 +27,7 @@ export default function Dashboard(props) {
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/businessuser/" + props.user[0].id)
-      .then(function(res) {
+      .then(function (res) {
         setBusinessInformation(res);
         setCurrentBusiness(res.data[0].id);
         setHasBusiness(true);
@@ -49,8 +49,8 @@ export default function Dashboard(props) {
           userName={props.user[0].name}
         />
       ) : (
-        console.log("Drawer not mounted")
-      )}
+          console.log("Drawer not mounted")
+        )}
 
       <main
         className={clsx(classes.content, {
@@ -62,12 +62,12 @@ export default function Dashboard(props) {
             {hasBusiness ? (
               <BusinessTable businessId={currentBusiness} />
             ) : (
-              console.log("not mounted")
-            )}
+                console.log("not mounted")
+              )}
           </div>
         </Container>
         <Footer />
       </main>
     </div>
   );
-}
+};

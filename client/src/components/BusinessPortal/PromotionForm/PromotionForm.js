@@ -3,7 +3,6 @@ import TextField from "@material-ui/core/TextField";
 import { Button, InputLabel } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-
 // styling
 const useStyles = makeStyles(theme => ({
   // promo bottom
@@ -14,8 +13,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: '20px'
   }
 }));
-
-
 
 function PromotionForm(props) {
   const classes = useStyles();
@@ -46,7 +43,7 @@ function PromotionForm(props) {
     }
 
     if (description === "") {
-     descriptionError = true;
+      descriptionError = true;
     }
 
     if (isNaN(quantity) || quantity < 1) {
@@ -54,7 +51,7 @@ function PromotionForm(props) {
     }
 
     //sets the stae values to render error
-    setValues({...values, 'nameError': nameError, 'quantityError': quantityError, 'DescriptionError': descriptionError, })
+    setValues({ ...values, 'nameError': nameError, 'quantityError': quantityError, 'DescriptionError': descriptionError });
 
     //returns based on the errors present
     if (!nameError && !descriptionError && !quantityError) {
@@ -68,6 +65,7 @@ function PromotionForm(props) {
     if (validateInputs()) {
       props.formContents(values);
     } else {
+      // REFACTOR empty else
     }
   };
 
@@ -121,6 +119,6 @@ function PromotionForm(props) {
       </Button>
     </form>
   );
-}
+};
 
 export default PromotionForm;
