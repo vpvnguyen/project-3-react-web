@@ -16,9 +16,6 @@ import MobileApp from './MobileApp/MobileApp.jsx';
 import withStyles from "@material-ui/core/styles/withStyles";
 import AddBusiness from '../BusinessPortal/AddBusiness/AddBusinessPage/AddBusiness';
 
-// axios
-import axios from 'axios';
-
 // styling; export to css
 const styles = (theme) => ({
     root: {
@@ -55,15 +52,13 @@ class Splash extends Component {
         super(props)
         this.state = {
             claimBusiness: false
-        }
-    }
+        };
+    };
 
-    claimBusinessClick = (event) => {
-        event.preventDefault()
+    claimBusinessClick = () => {
         this.setState({
             claimBusiness: true
         });
-        console.log('login')
     };
 
     closeForm = () => {
@@ -71,7 +66,6 @@ class Splash extends Component {
             claimBusiness: false
         });
     };
-
 
     render(props) {
         const { classes } = this.props;
@@ -87,7 +81,7 @@ class Splash extends Component {
                             <LocalBarIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Dat Beer App
+                            Dat Beer App 2.0
                         </Typography>
                         <BusinessSignIn user={this.props.user} handleClaimClick={this.claimBusinessClick} authenticated={this.props.authenticated} />
                         {showForm ? <AddBusiness user={this.props.user} closeForm={this.closeForm} /> : <div></div>}
@@ -100,8 +94,7 @@ class Splash extends Component {
                 </Grid>
             </Grid>
         );
-    }
-}
-
+    };
+};
 
 export default withStyles(styles)(Splash); 
