@@ -4,8 +4,8 @@ import {
     Switch,
     Route,
     Link
-  } from "react-router-dom";
-import Dashboard from '../../BusinessPortal/Dashboard/Dashboard'; 
+} from "react-router-dom";
+import Dashboard from '../../BusinessPortal/Dashboard/Dashboard';
 
 // material-ui
 import Button from '@material-ui/core/Button';
@@ -20,16 +20,15 @@ const useStyles = makeStyles(theme => ({
 
 // events
 const handleLogInClicks = () => {
-    console.log('login');
     // route to auth
-    window.open("http://localhost:3000/auth/google", "_self");
+    window.open("http://localhost:5000/auth/google", "_self"); // REFACTOR CAUSING WINDOW TO RELOAD
 };
 
 
 const handleDashboardClicks = () => {
     console.log('dashboard');
     // route to auth
-    window.open("http://localhost:3000/auth/google", "_self");
+    window.open("http://localhost:5000/auth/google", "_self");
 };
 
 // render components
@@ -54,9 +53,9 @@ export default function BusinessSignIn(props) {
                     </Route>
                 </Switch>
             </Router>
-            
+
         )
-    } else if (props.authenticated === false ) {
+    } else if (props.authenticated === false) {
         return (
             <Button
                 type="submit"

@@ -16,6 +16,9 @@ import MobileApp from './MobileApp/MobileApp.jsx';
 import withStyles from "@material-ui/core/styles/withStyles";
 import AddBusiness from '../BusinessPortal/AddBusiness/AddBusinessPage/AddBusiness';
 
+// axios
+import axios from 'axios';
+
 // styling; export to css
 const styles = (theme) => ({
     root: {
@@ -46,31 +49,31 @@ const styles = (theme) => ({
     },
 });
 
-
 // render sign in page
 class Splash extends Component {
     constructor(props) {
-        super(props) 
-        this.state ={
+        super(props)
+        this.state = {
             claimBusiness: false
         }
     }
-    
-    
-    claimBusinessClick = () => {
+
+    claimBusinessClick = (event) => {
+        event.preventDefault()
         this.setState({
             claimBusiness: true
-        }); 
-    }; 
+        });
+        console.log('login')
+    };
 
     closeForm = () => {
         this.setState({
             claimBusiness: false
-        }); 
-    }; 
+        });
+    };
 
 
-    render (props) {
+    render(props) {
         const { classes } = this.props;
         let showForm = this.state.claimBusiness
 
@@ -86,10 +89,10 @@ class Splash extends Component {
                         <Typography component="h1" variant="h5">
                             Dat Beer App
                         </Typography>
-                            <BusinessSignIn user={this.props.user} handleClaimClick={this.claimBusinessClick} authenticated={this.props.authenticated}/> 
-                            {showForm ? <AddBusiness user={this.props.user} closeForm={this.closeForm} /> : <div></div>}
-                            <p>or</p>
-                            <MobileApp /> 
+                        <BusinessSignIn user={this.props.user} handleClaimClick={this.claimBusinessClick} authenticated={this.props.authenticated} />
+                        {showForm ? <AddBusiness user={this.props.user} closeForm={this.closeForm} /> : <div></div>}
+                        <p>or</p>
+                        <MobileApp />
                         <Box mt={5}>
                             <Footer />
                         </Box>
