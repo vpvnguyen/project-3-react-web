@@ -7,7 +7,9 @@ const keys = require('./config/env_config');
 const apiRoutes = require('./routes/api-routes');
 const authRoutes = require('./routes/auth-routes');
 const cors = require('cors');
-const path = require('path');
+const bodyParser = require('body-parser')
+const path = require('path'); 
+
 
 //node server port 
 const PORT = process.env.PORT || 5000;
@@ -17,16 +19,17 @@ app.use(express.urlencoded({
   extended: true
 }));
 app.use(express.json());
+app.use(bodyParser.json())
 
 //use cookie encoder to save cookies for one day 
-app.use(cookieSession({
-  maxAge: 24 * 60 * 60 * 1000,
-  keys: [keys.cookieKey]
-}));
+// app.use(cookieSession({
+//   maxAge: 24 * 60 * 60 * 1000,
+//   keys: [keys.cookieKey]
+// }));
 
 //initialize passport 
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 //setting cors headers to allow react app to hit REST API 
 app.use(

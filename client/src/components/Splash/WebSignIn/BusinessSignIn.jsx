@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+
 
 // material-ui
 import Button from '@material-ui/core/Button';
@@ -26,35 +21,28 @@ const handleLogInClicks = () => {
     window.open("http://localhost:5000/auth/google", "_self"); // REFACTOR FROM 3000 to 5000
 };
 
-const handleDashboardClicks = () => { // REFACTOR inconsistent name
-    console.log('dashboard');
-    // route to auth
-    window.open("http://localhost:5000/auth/google", "_self"); // REFACTOR FROM 3000 to 5000
-};
+// const handleDashboardClicks = () => { // REFACTOR inconsistent name
+//     console.log('dashboard');
+//     // route to auth
+//     // window.open("http://localhost:5000/auth/google", "_self"); // REFACTOR FROM 3000 to 5000
+    
+// };  
 
 // render components
 export default function BusinessSignIn(props) {
     const classes = useStyles();
-    if (props.authenticated && props.user[0].user_type === 'businessuser') {
+    if (props.authenticated && props.user.user_type === 'businessuser') {
         return (
-            <Router>
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="outlined"
-                    color="secondary"
-                    className={classes.btnSpacing}
-                    onClick={handleDashboardClicks} // REFACTOR from callback to definition
-                >
-                    <Link to='/dashboard' >Business Dashboard</Link>
-                </Button>
-                <Switch>
-                    <Route path="/dashboard">
-                        <Dashboard />
-                    </Route>
-                </Switch>
-            </Router>
-
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="outlined"
+                        color="secondary"
+                        className={classes.btnSpacing}
+                        onClick={props.ButtonClick}
+                    >
+                        Business Dashboard
+                    </Button>
         );
     } else if (props.authenticated === false) {
         return (
@@ -82,5 +70,18 @@ export default function BusinessSignIn(props) {
                 Claim a business
             </Button>
         );
-    };
+    } else {
+        return (
+            <Button
+                type="submit"
+                fullWidth
+                variant="outlined"
+                color="secondary"
+                className={classes.btnSpacing}
+                onClick={handleLogInClicks}
+            >
+                Login in with Google
+            </Button>
+        );
+    }
 };
