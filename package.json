@@ -20,6 +20,7 @@
     "passport-google-oauth": "^2.0.0",
     "pg": "^7.12.1",
     "react-router-dom": "^5.1.2",
+    "yelp-fusion": "^3.0.0",
     "yup": "^0.27.0"
   },
   "scripts": {
