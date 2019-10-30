@@ -68,8 +68,6 @@ router.get('/google', passport.authenticate('google', {
 //     })
 // ); 
 
-
-
 // //google auth redirect 
 router.get('/google/redirect', passport.authenticate('google', { session: false }), (req, res) => {
   console.log(req.user)  

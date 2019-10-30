@@ -35,14 +35,12 @@ export default function Dashboard(props) {
 
   //on mount, we get business User using an ID and update the state
   useEffect(() => {
-    let devUrl = 'http://localhost:3000/api/businessuser/'
-    let prodUrl = 'http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/businessuser/'
     let url = ''
     console.log(props.user)
   if (process.env.NODE_ENV === 'production') {
-    url = prodUrl
+    url = 'http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/businessuser/'
   } else {
-    url = devUrl
+    url = 'http://localhost:3000/api/businessuser/'
   }
     if (props.user) {
       axios
