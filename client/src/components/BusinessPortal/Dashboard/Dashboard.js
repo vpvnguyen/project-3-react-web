@@ -20,7 +20,12 @@ const useStyles = makeStyles(theme => ({}));
 
 // render dashboard
 export default function Dashboard(props) {
-  const Auth = new AuthService('http://localhost:5000');
+  let Auth = ''; 
+  if (process.env.NODE_ENV === 'production') {
+    Auth = new AuthService('http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/');
+  } else {
+    Auth = new AuthService('http://localhost:3000/');
+  }
   const classes = useStyles();
   const [open] = React.useState(true);
   const [businessInformation, setBusinessInformation] = React.useState(false);
@@ -30,10 +35,18 @@ export default function Dashboard(props) {
 
   //on mount, we get business User using an ID and update the state
   useEffect(() => {
+    let devUrl = 'http://localhost:3000/api/businessuser/'
+    let prodUrl = 'http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/businessuser/'
+    let url = ''
     console.log(props.user)
+  if (process.env.NODE_ENV === 'production') {
+    url = prodUrl
+  } else {
+    url = devUrl
+  }
     if (props.user) {
       axios
-        .get("http://localhost:3000/api/businessuser/" + props.user.id)
+        .get(url + props.user.id)
         .then(function (res) {
           setBusinessInformation(res);
           setCurrentBusiness(res.data[0].id);
@@ -42,7 +55,7 @@ export default function Dashboard(props) {
         }).catch(err => err); 
     } else if (props.location.user) {
       axios
-        .get("http://localhost:3000/api/businessuser/" + props.location.user.id)
+        .get(url + props.location.user.id)
         .then(function (res) {
           setBusinessInformation(res);
           setCurrentBusiness(res.data[0].id);
@@ -52,7 +65,7 @@ export default function Dashboard(props) {
     } else if (user.length === 0) {
         let profile = Auth.getProfile(); 
         axios
-        .get("http://localhost:3000/api/businessuser/" + profile.id)
+        .get(url + profile.id)
         .then(function (res) {
           setBusinessInformation(res);
           setCurrentBusiness(res.data[0].id);
@@ -73,7 +86,7 @@ export default function Dashboard(props) {
         <PersistentDrawer
           business={businessInformation}
           currentBusinessChange={currentBusinessChange}
-          userName={user.name}
+          // userName={user.name}
         />
       ) : (
           console.log("Drawer not mounted")

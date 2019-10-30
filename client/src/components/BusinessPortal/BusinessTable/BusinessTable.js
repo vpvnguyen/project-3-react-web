@@ -12,14 +12,18 @@ class MaterialTableDemo extends Component {
         { title: "Quantity", field: "quantity", type: "numeric" }
       ],
       data: [],
-      businessId: ""
+      businessId: "", 
     };
   };
+  
 
   componentDidMount() {
-    let url =
-      "http://localhost:5000/api/promotion/all/business/" +
-      this.props.businessId;
+    let url = ''; 
+    if (process.env.NODE_ENV === 'production') {
+      url = "http://localhost:5000/api/promotion/all/business/" + this.props.businessId;
+    } else {
+      url = 'http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/promotion/all/business/'
+    }
     axios
       .get(url)
       .then(response => {
@@ -32,10 +36,13 @@ class MaterialTableDemo extends Component {
   };
 
   componentDidUpdate() {
+    let url = ''; 
+    if (process.env.NODE_ENV === 'production') {
+      url = "http://localhost:5000/api/promotion/all/business/" + this.props.businessId;
+    } else {
+      url = 'http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/promotion/all/business/'
+    }
     if (this.props.businessId !== this.state.businessId) {
-      let url =
-        "http://localhost:5000/api/promotion/all/business/" +
-        this.props.businessId;
       axios
         .get(url)
         .then(response => {
@@ -66,8 +73,9 @@ class MaterialTableDemo extends Component {
                   data.push(newData);
                   this.setState({ ...this.state, data });
 
-                  //adds new item to the DB
-                  let url = "http://localhost:5000/api/promotion/add";
+                  //adds new item to the 
+                  let url = '';
+                  {process.env.NODE_ENV === 'production' ? url = "http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/promotion/add" : url = "http://localhost:5000/api/promotion/add" }
                   axios
                     .post(url, {
                       business_id: this.props.businessId,
@@ -90,7 +98,8 @@ class MaterialTableDemo extends Component {
                   const data = [...this.state.data];
                   data[data.indexOf(oldData)] = newData;
                   this.setState({ ...this.state, data });
-                  let url = "http://localhost:3000/api/promotion/edit";
+                  let url = '';
+                  {process.env.NODE_ENV === 'production' ? url = "http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/promotion/edit" : url = "http://localhost:5000/api/promotion/edit" }
                   axios
                     .put(url, newData)
                     .then(function (res) {
@@ -110,9 +119,8 @@ class MaterialTableDemo extends Component {
                   this.setState({ ...this.state, data });
 
                   //deletes item from DB
-                  let url =
-                    "http://localhost:5000/api/promotion/delete/" +
-                    oldData.promotion_id;
+                  let url = '';
+                  {process.env.NODE_ENV === 'production' ? url = "http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/promotion/delete/" + oldData.promotion_id : url = "http://localhost:5000/api/promotion/delete/" + oldData.promotion_id }
                   axios
                     .post(url)
                     .then(res => {

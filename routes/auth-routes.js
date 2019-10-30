@@ -73,7 +73,12 @@ router.get('/google', passport.authenticate('google', {
 // //google auth redirect 
 router.get('/google/redirect', passport.authenticate('google', { session: false }), (req, res) => {
   console.log(req.user)  
-  res.redirect('http://localhost:3000/splash/' + req.user.id)
+  if (process.env.NODE_ENV === 'production') {
+    // final aws url 
+    res.redirect('/splash/' + req.user.id)
+  } else {
+    res.redirect('http://localhost:3000/splash/' + req.user.id)
+  }
 }); 
 
 
