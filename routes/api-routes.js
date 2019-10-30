@@ -2,7 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 const Business = require("../db/business");
 const Promotions = require("../db/promotions");
-
+const Yelp = require('../db/yelp.js');
 // Redirect Routes
 
 // Business Routes
@@ -50,7 +50,7 @@ router.get("/promotion/all/:city", (req, res) => {
 
 // Add Promotion
 router.post("/promotion/add", (req, res) => {
-Promotions.addPromotion(req.body, res)
+  Promotions.addPromotion(req.body, res)
 });
 
 // Delete Promotion
@@ -68,5 +68,10 @@ router.put("/promotion/edit", (req, res) => {
 // Landing Page -> Login -> Dashboard
 // Landing Page -> Apple Store
 // Landing Page -> Play Store
+
+// yelp routes
+router.get('/yelp/:term/:location', (req, res) => {
+  Yelp.otherInfo(res, req.params.term, req.params.location);
+});
 
 module.exports = router;
