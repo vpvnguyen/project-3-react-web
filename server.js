@@ -7,6 +7,7 @@ const keys = require('./config/env_config');
 const apiRoutes = require('./routes/api-routes');
 const authRoutes = require('./routes/auth-routes');
 const cors = require('cors');
+const path = require('path');
 
 //node server port 
 const PORT = process.env.PORT || 5000;
