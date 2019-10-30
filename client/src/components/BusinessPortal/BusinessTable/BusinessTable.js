@@ -20,9 +20,10 @@ class MaterialTableDemo extends Component {
   componentDidMount() {
     let url = ''; 
     if (process.env.NODE_ENV === 'production') {
-      url = "http://localhost:5000/api/promotion/all/business/" + this.props.businessId;
+      url = 'http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/promotion/all/business/' + this.props.businessId;
+      
     } else {
-      url = 'http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/promotion/all/business/'
+      url = "http://localhost:5000/api/promotion/all/business/" + this.props.businessId;
     }
     axios
       .get(url)
@@ -38,9 +39,9 @@ class MaterialTableDemo extends Component {
   componentDidUpdate() {
     let url = ''; 
     if (process.env.NODE_ENV === 'production') {
-      url = "http://localhost:5000/api/promotion/all/business/" + this.props.businessId;
+      url = 'http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/promotion/all/business/' + this.props.businessId;
     } else {
-      url = 'http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/api/promotion/all/business/'
+      url = "http://localhost:5000/api/promotion/all/business/" + this.props.businessId;
     }
     if (this.props.businessId !== this.state.businessId) {
       axios
