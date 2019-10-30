@@ -6,24 +6,6 @@ const __ = require('lodash');
 require('dotenv').config();
 const keys = require('./env_config'); 
 
-//passport serialize user function
-passport.serializeUser((user, done) => {
-    console.log('serialize user: ' + user.id);
-    done(null, user.id); 
-});
-
-//passport deserialize user function 
-passport.deserializeUser((id, done) => {
-    knex('users')
-        .where('id', id)
-        .select()
-        .then((resp) => {
-            console.log('deserialize:' + JSON.stringify(resp))
-            done(null, resp); 
-        })
-        .catch(err => console.log(err)); 
-});
-
 passport.use(
     new GoogleStrategy({
         //Google strategy options 
@@ -33,7 +15,7 @@ passport.use(
         clientSecret: keys.clientSecret
     }, (accessToken, refreshToken, profile, done) => {
         //strategy callback 
-        console.log(profile)
+        // console.log(profile)
         //lodash to pick data we need from profile object 
         let data = __.pick(profile, 'displayName', 'id', 'name', 'photos'); 
         //returning a promise 

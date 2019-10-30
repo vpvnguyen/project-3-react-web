@@ -2,10 +2,22 @@ import React, { Component } from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import PropTypes from "prop-types";
+import AuthService from '../AuthService.jsx'; 
 
 // components
 import Splash from '../Splash/Splash.jsx';
 import Dashboard from '../BusinessPortal/Dashboard/Dashboard.js';
+
+// router 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link, 
+  withRouter, 
+  useParams
+} from "react-router-dom";
+import PrivateRoute from '../../PrivateRoute'; 
 
 const theme = createMuiTheme({
   palette: {
@@ -15,7 +27,10 @@ const theme = createMuiTheme({
 
 // render web application
 class Main extends Component {
-
+  constructor (props) {
+    super(props) 
+    this.Auth = new AuthService();
+  }
   // static props for user info 
   static propTypes = {
     user: PropTypes.shape({
@@ -24,7 +39,10 @@ class Main extends Component {
       google_id: PropTypes.string,
       user_type: PropTypes.string,
       id: PropTypes.number
-    })
+    }), 
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   };
 
   // state 
@@ -34,19 +52,37 @@ class Main extends Component {
     error: null,
     authenticated: false
   };
-
+//   componentWillMount() {
+//     if (!this.Auth.loggedIn()) {
+//         this.props.history.replace('/login')
+//     }
+//     else {
+//         try {
+//             const profile = this.Auth.getProfile()
+//             this.setState({
+//                 user: profile, 
+//                 authenticated: true
+//             })
+//         }
+//         catch(err){
+//             this.Auth.logout()
+//             this.props.history.replace('/login')
+//         }
+//     }
+// }
   // because we are using cookies on mount it will check for authenticated users 
   componentDidMount() {
+    console.log(this.props.match)
     // hits auth/login/success on node server 
-    fetch("http://localhost:3000/auth/login/success", {
+    fetch("http://localhost:5000/auth/login/success/" + this.props.match.params.user, {
       method: "GET",
-      credentials: "include",
+      // credentials: "include",
       // cors headers
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": true
-      }
+      }, 
     })
       .then(response => {
         //if success return the response || user info 
@@ -54,7 +90,10 @@ class Main extends Component {
         throw new Error("failed to authenticate user");
       })
       .then(responseJson => {
+        console.log(responseJson)
         //set authenticated to true and make the user obejct = the authenticated in user 
+        this.props.getUser(responseJson.user)
+        this.Auth.setToken(responseJson.token)
         this.setState({
           authenticated: true,
           user: responseJson.user
@@ -62,6 +101,7 @@ class Main extends Component {
       })
       .catch(error => {
         //if authentication fails 
+        console.log(error)
         this.setState({
           authenticated: false,
           error: "Failed to authenticate user"
@@ -69,21 +109,25 @@ class Main extends Component {
       });
   };
 
+  goToDashboard = () => {
+    this.props.history.push({
+        pathname: '/dashboard',
+        user: this.state.user,
+        isAuthenticated: true
+      })
+  }
+
 
   render() {
+    const { match, location, history } = this.props;
     return (
       <div className="container">
         <ThemeProvider theme={theme} >
-          {/* if authenticated render business dashbard if not render splash page */}
-          {this.state.authenticated && this.state.user[0].user_type === 'businessuser' ? (
-            <Dashboard user={this.state.user} />
-          ) : (
-              <Splash user={this.state.user} authenticated={this.state.authenticated} />
-            )}
+          <Splash user_id={match.params} user={this.state.user} goToDashboard={this.goToDashboard} authenticated={this.state.authenticated} />
         </ThemeProvider>
       </div>
     );
   };
-};
+};  
 
 export default Main;
