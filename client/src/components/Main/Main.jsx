@@ -73,8 +73,14 @@ class Main extends Component {
   // because we are using cookies on mount it will check for authenticated users 
   componentDidMount() {
     console.log(this.props.match)
+    let url = ''; 
+    if (process.env.NODE_ENV === 'production') {
+      url = 'http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/auth/login/success/'; 
+    } else {
+      url = 'http://localhost:5000/auth/login/success/"'; 
+    }
     // hits auth/login/success on node server 
-    fetch("http://localhost:5000/auth/login/success/" + this.props.match.params.user, {
+    fetch(url + this.props.match.params.user, {
       method: "GET",
       // credentials: "include",
       // cors headers
