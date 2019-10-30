@@ -1,4 +1,7 @@
 const yelp = require('yelp-fusion');
+const dotenv = require('dotenv');
+dotenv.config();
+
 const keys = require('../config/env_config');
 
 // const client = yelp.client(keys.YELP_ENV);
