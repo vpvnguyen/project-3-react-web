@@ -18,7 +18,13 @@ const useStyles = makeStyles(theme => ({
 // events
 const handleLogInClicks = () => {
     // route to auth
-    window.open("http://localhost:5000/auth/google", "_self"); // REFACTOR FROM 3000 to 5000
+    let url = ''; 
+    if (process.env.NODE_ENV === 'production') {
+        url = "http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/auth/google"
+    } else {
+        url = "http://localhost:5000/auth/google"
+    }
+    window.open(url, "_self"); // REFACTOR FROM 3000 to 5000
 };
 
 // const handleDashboardClicks = () => { // REFACTOR inconsistent name
