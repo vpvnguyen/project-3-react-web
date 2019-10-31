@@ -69,6 +69,10 @@ router.put("/promotion/edit", (req, res) => {
 // Landing Page -> Apple Store
 // Landing Page -> Play Store
 
+router.get('/businessInfo/:id', (req, res) => {
+  Promotions.getPromotionAndInfo(req.params.id, res)
+});
+
 // yelp routes
 router.get('/yelp/:term/:location', (req, res) => {
   Yelp.otherInfo(res, req.params.term, req.params.location);
