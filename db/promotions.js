@@ -85,6 +85,16 @@ const Promotions = {
         cb.json(promotions);
       })
       .catch(err => console.log(err));
+  },
+  getPromotionAndInfo: (id, cb) => {
+    knex('promotion')
+      .leftJoin('businessinfo', 'promotion.business_id', 'businessinfo.business_id')
+      .where('businessinfo.business_id', id)
+      .select('*')
+      .then(response => {
+        cb.json(response)
+      })
+      .catch(err => console.log(err));
   }
 };
 
