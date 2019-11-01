@@ -1,7 +1,12 @@
 .logo {
-    max-width: 50px;
+    max-width: 100px;
 }
 
 .content {
     color: 'grey';
+}
+
+.divider {
+    opacity: .25;
+    margin-top: 20px;
 }

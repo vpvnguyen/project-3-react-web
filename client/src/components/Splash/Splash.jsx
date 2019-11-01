@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 
 // material-ui
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import LocalBarIcon from '@material-ui/icons/LocalBar';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from '@material-ui/core/Button'
 
@@ -16,7 +14,6 @@ import BusinessSignIn from './WebSignIn/BusinessSignIn.jsx';
 import MobileApp from './MobileApp/MobileApp.jsx';
 import AddBusiness from '../BusinessPortal/AddBusiness/AddBusinessPage/AddBusiness.jsx';
 import Footer from '../Footer/Footer.js';
-import Dashboard from '../BusinessPortal/Dashboard/Dashboard';
 
 // style
 import logo from '../../images/brew.png';
@@ -26,14 +23,8 @@ import { Animated } from 'react-animated-css';
 // routing 
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
     withRouter,
-    useRouteMatch
 } from "react-router-dom";
-import PrivateRoute from '../../PrivateRoute';
-import { grey } from '@material-ui/core/colors';
 
 // styling; export to css
 const styles = (theme) => ({
@@ -105,29 +96,21 @@ class Splash extends Component {
                         <div className={classes.paper}>
 
                             <Animated
-                                animationIn="bounce"
-
+                                animationIn="slideInDown"
                             >
-
-                                <Avatar className={classes.avatar}>
-                                    <img src={logo} className="logo" />
-                                </Avatar>
+                                <img src={logo} className="logo" />
                             </Animated>
 
-                            <Typography component="h1" variant="h5">
-                                Dat Beer App 2.0
+                            <Animated
+                                animationIn="fadeInDown"
+                                animationInDelay={500}
+                            >
+                                <Typography component="h1" variant="h5">
+                                    Business Portal
                             </Typography>
+                                <hr className="divider" />
+                            </Animated>
 
-
-                            {/* <Link to='/dashboard' onClick={() => this.props.history.push('/dashboard')} >
-                                <BusinessSignIn 
-                                    ButtonClick={() => this.nextPath('/dashboard')} 
-                                    user={this.props.user} 
-                                    handleClaimClick={this.claimBusinessClick} 
-                                    authenticated={this.props.authenticated}
-                                /> 
-                                Business dashboard
-                            </Link> */}
                             {this.props.authenticated && this.props.user.user_type === 'businessuser' ? (
                                 <Button
                                     className={classes.btnSpacing}
@@ -139,17 +122,35 @@ class Splash extends Component {
                                     Business Dashboard
                             </Button>
                             ) : (
-                                    <BusinessSignIn
-                                        user={this.props.user}
-                                        handleClaimClick={this.claimBusinessClick}
-                                        authenticated={this.props.authenticated}
-                                    />
+                                    <Animated
+                                        animationIn="flash"
+                                        animationInDelay={2000}
+                                    >
+                                        <BusinessSignIn
+                                            user={this.props.user}
+                                            handleClaimClick={this.claimBusinessClick}
+                                            authenticated={this.props.authenticated}
+                                        />
+                                    </Animated>
+
                                 )}
 
                             {showForm ? <AddBusiness user={this.props.user} closeForm={this.closeForm} /> : <div></div>}
-                            <MobileApp />
-                            <Box mt={5}>
-                                <Footer />
+
+                            <Animated
+                                animationIn="fadeIn"
+                                animationInDelay={5000}
+                            >
+                                <MobileApp />
+                            </Animated>
+
+                            <Box mt={3}>
+                                <Animated
+                                    animationIn="fadeInDown"
+                                    animationInDelay={1000}
+                                >
+                                    <Footer />
+                                </Animated>
                             </Box>
                         </div>
                     </Grid>

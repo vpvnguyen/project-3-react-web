@@ -12,13 +12,16 @@ import Dashboard from '../../BusinessPortal/Dashboard/Dashboard.js';
 const useStyles = makeStyles(theme => ({
     btnSpacing: {
         margin: theme.spacing(3, 0, 2),
-    }
+    },
+    color: {
+        color: 'gold',
+    },
 }));
 
 // events
 const handleLogInClicks = () => {
     // route to auth
-    let url = ''; 
+    let url = '';
     if (process.env.NODE_ENV === 'production') {
         url = "http://ec2-3-14-27-130.us-east-2.compute.amazonaws.com/auth/google/"
     } else {
@@ -27,27 +30,20 @@ const handleLogInClicks = () => {
     window.open(url, "_self"); // REFACTOR FROM 3000 to 5000
 };
 
-// const handleDashboardClicks = () => { // REFACTOR inconsistent name
-//     console.log('dashboard');
-//     // route to auth
-//     // window.open("http://localhost:5000/auth/google", "_self"); // REFACTOR FROM 3000 to 5000
-    
-// };  
-
 // render components
 export default function BusinessSignIn(props) {
     const classes = useStyles();
     if (props.authenticated && props.user.user_type === 'businessuser') {
         return (
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="outlined"
-                        color="secondary"
-                        className={classes.btnSpacing}
-                        onClick={props.ButtonClick}
-                    >
-                        Business Dashboard
+            <Button
+                type="submit"
+                fullWidth
+                variant="outlined"
+                color="secondary"
+                className={classes.btnSpacing}
+                onClick={props.ButtonClick}
+            >
+                Business Dashboard
                     </Button>
         );
     } else if (props.authenticated === false) {
