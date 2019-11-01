@@ -18,16 +18,22 @@ import AddBusiness from '../BusinessPortal/AddBusiness/AddBusinessPage/AddBusine
 import Footer from '../Footer/Footer.js';
 import Dashboard from '../BusinessPortal/Dashboard/Dashboard';
 
+// style
+import logo from '../../images/brew.png';
+import './Splash.css'
+import { Animated } from 'react-animated-css';
+
 // routing 
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link, 
-    withRouter, 
+    Link,
+    withRouter,
     useRouteMatch
 } from "react-router-dom";
-import PrivateRoute from '../../PrivateRoute'; 
+import PrivateRoute from '../../PrivateRoute';
+import { grey } from '@material-ui/core/colors';
 
 // styling; export to css
 const styles = (theme) => ({
@@ -58,8 +64,11 @@ const styles = (theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
     btnSpacing: {
-            margin: theme.spacing(3, 0, 2),
+        margin: theme.spacing(3, 0, 2),
     },
+    content: {
+        backgroundColor: '#edece4',
+    }
 });
 
 // render sign in page
@@ -83,12 +92,6 @@ class Splash extends Component {
         });
     };
 
-    
-
-    // nextPath(path) {
-    //     this.props.history.push(path);
-    //   }
-
     render(props) {
         const { classes } = this.props;
         let showForm = this.state.claimBusiness
@@ -98,14 +101,24 @@ class Splash extends Component {
                 <Grid container component="main" className={classes.root}>
                     <CssBaseline />
                     <Grid item xs={false} sm={4} md={7} className={classes.image} />
-                    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                    <Grid className={classes.content} item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                         <div className={classes.paper}>
-                            <Avatar className={classes.avatar}>
-                                <LocalBarIcon />
-                            </Avatar>
+
+                            <Animated
+                                animationIn="bounce"
+
+                            >
+
+                                <Avatar className={classes.avatar}>
+                                    <img src={logo} className="logo" />
+                                </Avatar>
+                            </Animated>
+
                             <Typography component="h1" variant="h5">
                                 Dat Beer App 2.0
                             </Typography>
+
+
                             {/* <Link to='/dashboard' onClick={() => this.props.history.push('/dashboard')} >
                                 <BusinessSignIn 
                                     ButtonClick={() => this.nextPath('/dashboard')} 
@@ -116,25 +129,24 @@ class Splash extends Component {
                                 Business dashboard
                             </Link> */}
                             {this.props.authenticated && this.props.user.user_type === 'businessuser' ? (
-                                <Button 
-                                className={classes.btnSpacing}
-                                fullWidth
-                                variant="outlined"
-                                color="secondary"
-                                onClick={() => {this.props.goToDashboard()}}
-                            >
-                                Business Dashboard    
-                            </Button>     
+                                <Button
+                                    className={classes.btnSpacing}
+                                    fullWidth
+                                    variant="outlined"
+                                    color="secondary"
+                                    onClick={() => { this.props.goToDashboard() }}
+                                >
+                                    Business Dashboard
+                            </Button>
                             ) : (
-                                <BusinessSignIn 
-                                    user={this.props.user} 
-                                    handleClaimClick={this.claimBusinessClick} 
-                                    authenticated={this.props.authenticated}
-                                /> 
-                            )}
-                                                   
+                                    <BusinessSignIn
+                                        user={this.props.user}
+                                        handleClaimClick={this.claimBusinessClick}
+                                        authenticated={this.props.authenticated}
+                                    />
+                                )}
+
                             {showForm ? <AddBusiness user={this.props.user} closeForm={this.closeForm} /> : <div></div>}
-                            <p>or</p>
                             <MobileApp />
                             <Box mt={5}>
                                 <Footer />

@@ -24,6 +24,8 @@
     "passport-google-oauth": "^2.0.0",
     "pg": "^7.12.1",
     "querystring": "^0.2.0",
+    "react": "^16.11.0",
+    "react-animated-css": "^1.2.1",
     "react-router-dom": "^5.1.2",
     "yelp-fusion": "^3.0.0",
     "yup": "^0.27.0"
