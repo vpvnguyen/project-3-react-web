@@ -12,7 +12,7 @@ export default function Footer() {
       style={{ marginTop: "25px" }}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://github.com/vpvnguyen/project-3-react-web">
         Brew
       </Link>{" "}
       {new Date().getFullYear()}

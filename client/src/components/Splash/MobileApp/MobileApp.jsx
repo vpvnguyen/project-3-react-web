@@ -7,14 +7,8 @@ const handleClicks = () => {
 
 export default function MobileApp() {
     return (
-        <Button
-            type="submit"
-            fullWidth
-            variant="outlined"
-            color="inherit"
-            onClick={handleClicks}
-        >
-            Get the App for iOS and Android!
-        </Button>
+        <p>
+            Not a business? Visit the app store for IOS or Android!
+        </p>
     );
 };

@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 
 // material-ui
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import LocalBarIcon from '@material-ui/icons/LocalBar';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from '@material-ui/core/Button'
 
@@ -16,18 +14,17 @@ import BusinessSignIn from './WebSignIn/BusinessSignIn.jsx';
 import MobileApp from './MobileApp/MobileApp.jsx';
 import AddBusiness from '../BusinessPortal/AddBusiness/AddBusinessPage/AddBusiness.jsx';
 import Footer from '../Footer/Footer.js';
-import Dashboard from '../BusinessPortal/Dashboard/Dashboard';
+
+// style
+import logo from '../../images/brew.png';
+import './Splash.css'
+import { Animated } from 'react-animated-css';
 
 // routing 
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
-    Link, 
-    withRouter, 
-    useRouteMatch
+    withRouter,
 } from "react-router-dom";
-import PrivateRoute from '../../PrivateRoute'; 
 
 // styling; export to css
 const styles = (theme) => ({
@@ -58,8 +55,11 @@ const styles = (theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
     btnSpacing: {
-            margin: theme.spacing(3, 0, 2),
+        margin: theme.spacing(3, 0, 2),
     },
+    content: {
+        backgroundColor: '#edece4',
+    }
 });
 
 // render sign in page
@@ -83,12 +83,6 @@ class Splash extends Component {
         });
     };
 
-    
-
-    // nextPath(path) {
-    //     this.props.history.push(path);
-    //   }
-
     render(props) {
         const { classes } = this.props;
         let showForm = this.state.claimBusiness
@@ -98,46 +92,65 @@ class Splash extends Component {
                 <Grid container component="main" className={classes.root}>
                     <CssBaseline />
                     <Grid item xs={false} sm={4} md={7} className={classes.image} />
-                    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                    <Grid className={classes.content} item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                         <div className={classes.paper}>
-                            <Avatar className={classes.avatar}>
-                                <LocalBarIcon />
-                            </Avatar>
-                            <Typography component="h1" variant="h5">
-                                Dat Beer App 2.0
-                            </Typography>
-                            {/* <Link to='/dashboard' onClick={() => this.props.history.push('/dashboard')} >
-                                <BusinessSignIn 
-                                    ButtonClick={() => this.nextPath('/dashboard')} 
-                                    user={this.props.user} 
-                                    handleClaimClick={this.claimBusinessClick} 
-                                    authenticated={this.props.authenticated}
-                                /> 
-                                Business dashboard
-                            </Link> */}
-                            {this.props.authenticated && this.props.user.user_type === 'businessuser' ? (
-                                <Button 
-                                className={classes.btnSpacing}
-                                fullWidth
-                                variant="outlined"
-                                color="secondary"
-                                onClick={() => {this.props.goToDashboard()}}
+
+                            <Animated
+                                animationIn="slideInDown"
                             >
-                                Business Dashboard    
-                            </Button>     
+                                <img src={logo} className="logo" />
+                            </Animated>
+
+                            <Animated
+                                animationIn="fadeInDown"
+                                animationInDelay={500}
+                            >
+                                <Typography component="h1" variant="h5">
+                                    Business Portal
+                            </Typography>
+                                <hr className="divider" />
+                            </Animated>
+
+                            {this.props.authenticated && this.props.user.user_type === 'businessuser' ? (
+                                <Button
+                                    className={classes.btnSpacing}
+                                    fullWidth
+                                    variant="outlined"
+                                    color="secondary"
+                                    onClick={() => { this.props.goToDashboard() }}
+                                >
+                                    Business Dashboard
+                            </Button>
                             ) : (
-                                <BusinessSignIn 
-                                    user={this.props.user} 
-                                    handleClaimClick={this.claimBusinessClick} 
-                                    authenticated={this.props.authenticated}
-                                /> 
-                            )}
-                                                   
+                                    <Animated
+                                        animationIn="flash"
+                                        animationInDelay={2000}
+                                    >
+                                        <BusinessSignIn
+                                            user={this.props.user}
+                                            handleClaimClick={this.claimBusinessClick}
+                                            authenticated={this.props.authenticated}
+                                        />
+                                    </Animated>
+
+                                )}
+
                             {showForm ? <AddBusiness user={this.props.user} closeForm={this.closeForm} /> : <div></div>}
-                            <p>or</p>
-                            <MobileApp />
-                            <Box mt={5}>
-                                <Footer />
+
+                            <Animated
+                                animationIn="fadeIn"
+                                animationInDelay={5000}
+                            >
+                                <MobileApp />
+                            </Animated>
+
+                            <Box mt={3}>
+                                <Animated
+                                    animationIn="fadeInDown"
+                                    animationInDelay={1000}
+                                >
+                                    <Footer />
+                                </Animated>
                             </Box>
                         </div>
                     </Grid>
